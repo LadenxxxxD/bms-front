@@ -10,23 +10,13 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { DetailsComponent } from './details/details.component';
 
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { RevertComponent } from './revert/revert.component';
-import { BookManageComponent } from './book-manage/book-manage.component';
-import { LogsComponent } from './logs/logs.component';
-import { RankingListComponent } from './ranking-list/ranking-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    DetailsComponent,
-    RevertComponent,
-    BookManageComponent,
-    LogsComponent,
-    RankingListComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
