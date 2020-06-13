@@ -12,11 +12,13 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { DetailsComponent } from './details/details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +26,6 @@ import { BsModalService } from 'ngx-bootstrap/modal';
     HttpClientModule,
     AppRoutingModule,
     BootstrapModalModule,
-
     ModalModule.forRoot()
 
   ],
