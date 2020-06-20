@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { NzTableFilterFn, NzTableFilterList, NzTableSortFn, NzTableSortOrder } from 'ng-zorro-antd/table';
 
 interface DataItem {
-  name: string;
-  age: number;
-  address: string;
+  bookId: string;
+  bookName: string;
+  authorName: string;
+  educationName: string;
+  quantity: number;
 }
 
 interface ColumnItem {
@@ -13,6 +15,8 @@ interface ColumnItem {
   sortFn?: NzTableSortFn;
   listOfFilter?: NzTableFilterList;
   filterFn?: NzTableFilterFn;
+  filterMultiple?: boolean;
+  sortDirections?: NzTableSortOrder[];
 }
 
 @Component({
@@ -27,89 +31,74 @@ export class LibraryComponent implements OnInit {
   ngOnInit() {
   }
 
+  // thead columns
   listOfColumns: ColumnItem[] = [
     {
-      name: 'Name',
-      sortOrder: null,
-      sortFn: (a: DataItem, b: DataItem) => a.name.localeCompare(b.name),
-      listOfFilter: [
-        { text: 'Joe', value: 'Joe' },
-        { text: 'Jim', value: 'Jim' }
-      ],
-      filterFn: (list: string[], item: DataItem) => list.some(name => item.name.indexOf(name) !== -1)
+      name: '图书ID',
+      sortOrder: 'ascend',
+      sortFn: (a: DataItem, b: DataItem) => a.bookId.localeCompare(b.bookId),
     },
     {
-      name: 'Age',
+      name: '书名',
       sortOrder: null,
-      sortFn: (a: DataItem, b: DataItem) => a.age - b.age
+      sortFn: (a: DataItem, b: DataItem) => a.bookName.localeCompare(b.bookName),
     },
     {
-      name: 'Address',
-      listOfFilter: [
-        { text: 'London', value: 'London' },
-        { text: 'Sidney', value: 'Sidney' }
-      ],
-      filterFn: (address: string, item: DataItem) => item.address.indexOf(address) !== -1
+      name: '作者'
+    },
+    {
+      name: '出版社',
+      sortOrder: null,
+      sortFn: (a: DataItem, b: DataItem) => a.educationName.length - b.educationName.length,
+    },
+    {
+      name: '剩余数量',
+      sortOrder: null,
+      sortFn: (a: DataItem, b: DataItem) => a.quantity - b.quantity
     }
   ];
   listOfData: DataItem[] = [
     {
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park'
+      bookId: 'a1336',
+      bookName: 'JavaScript权威指南',
+      authorName: '弗兰纳根',
+      educationName: "机械工业出版社",
+      quantity: 32
     },
     {
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park'
+      bookId: 'a1348',
+      bookName: 'JavaScript高级程序设计',
+      authorName: 'Nicholas C. Zakas ',
+      educationName: "人民邮电出版社",
+      quantity: 45
     },
     {
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
+      bookId: 'a1386',
+      bookName: '你不知道的JavaScript',
+      authorName: '辛普森（Kyle Simpson）',
+      educationName: "电子工业出版社",
+      quantity: 16
     },
     {
-      name: 'Jim Red',
-      age: 32,
-      address: 'London No. 2 Lake Park'
-    }
+      bookId: 'a1346',
+      bookName: 'JavaScript编程精解',
+      authorName: '马尔奇·哈弗贝克',
+      educationName: "机械工业出版社",
+      quantity: 3
+    },
+    {
+      bookId: 'a1396',
+      bookName: 'JavaScript语言精粹',
+      authorName: '克罗克福德',
+      educationName: "电子工业出版社",
+      quantity: 27
+    },
   ];
 
-  trackByName(_: number, item: ColumnItem): string {
-    return item.name;
-  }
 
-  sortByAge(): void {
-    this.listOfColumns.forEach(item => {
-      if (item.name === 'Age') {
-        item.sortOrder = 'descend';
-      } else {
-        item.sortOrder = null;
-      }
-    });
-  }
 
-  resetFilters(): void {
-    this.listOfColumns.forEach(item => {
-      if (item.name === 'Name') {
-        item.listOfFilter = [
-          { text: 'Joe', value: 'Joe' },
-          { text: 'Jim', value: 'Jim' }
-        ];
-      } else if (item.name === 'Address') {
-        item.listOfFilter = [
-          { text: 'London', value: 'London' },
-          { text: 'Sidney', value: 'Sidney' }
-        ];
-      }
-    });
-  }
-
-  resetSortAndFilters(): void {
-    this.listOfColumns.forEach(item => {
-      item.sortOrder = null;
-    });
-    this.resetFilters();
+  deleteRow(id: string): void {
+    this.listOfData = this.listOfData.filter(d => d.bookId !== id);
   }
 
 }

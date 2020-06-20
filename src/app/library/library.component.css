@@ -1,10 +1,6 @@
 #table-info{
     margin: 20px;
 }
-.table-operations {
+.breadcrumb-container{
     margin-bottom: 16px;
-}
-
-.table-operations > button {
-    margin-right: 8px;
 }

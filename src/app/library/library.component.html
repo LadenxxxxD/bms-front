@@ -1,23 +1,39 @@
 <div id="table-info">
-    <div class="table-operations">
-        <button nz-button (click)="sortByAge()">Sort age</button>
-        <button nz-button (click)="resetFilters()">Clear filters</button>
-        <button nz-button (click)="resetSortAndFilters()">Clear filters and sorters</button>
+    <div class="breadcrumb-container">
+        <nz-breadcrumb>
+            <nz-breadcrumb-item>
+                <a [routerLink]="['../login']">Home</a>
+            </nz-breadcrumb-item>
+            <nz-breadcrumb-item>
+                Breadcrumb
+            </nz-breadcrumb-item>
+        </nz-breadcrumb>
     </div>
     <nz-table #filterTable [nzData]="listOfData" nzTableLayout="fixed">
         <thead>
             <tr>
-                <th *ngFor="let column of listOfColumns; trackBy: trackByName" [(nzSortOrder)]="column.sortOrder"
-                    [nzSortFn]="column.sortFn" [nzFilters]="column.listOfFilter" [nzFilterFn]="column.filterFn">
+                <th *ngFor="let column of listOfColumns" nzAlign="center" [nzSortOrder]="column.sortOrder"
+                    [nzSortFn]="column.sortFn" [nzSortDirections]="column.sortDirections"
+                    [nzFilterMultiple]="column.filterMultiple" [nzFilters]="column.listOfFilter"
+                    [nzFilterFn]="column.filterFn">
                     {{ column.name }}
                 </th>
+                <th nzWidth="140px" nzAlign="center">操作</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let data of filterTable.data">
-                <td>{{ data.name }}</td>
-                <td>{{ data.age }}</td>
-                <td>{{ data.address }}</td>
+                <td nzAlign="center">{{ data.bookId }}</td>
+                <td nzAlign="center">{{ data.bookName }}</td>
+                <td nzAlign="center">{{ data.authorName }}</td>
+                <td nzAlign="center">{{ data.educationName }}</td>
+                <td nzAlign="center">{{ data.quantity }}</td>
+                <td nzAlign="center">
+                    <a nz-button nzType="link" nzSize='small'>编辑</a>
+                    <nz-divider nzType="vertical"></nz-divider>
+                    <a nz-button nzType="link" nzDanger nzSize='small' nz-popconfirm nzPopconfirmTitle="确定删除?"
+                        (nzOnConfirm)="deleteRow(data.bookId)">删除</a>
+                </td>
             </tr>
         </tbody>
     </nz-table>

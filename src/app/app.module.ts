@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -29,6 +30,7 @@ import { LibraryComponent } from './library/library.component';
     HttpClientModule,
     AppRoutingModule,
     BootstrapModalModule,
+    BrowserAnimationsModule,
     NgZorroAntdModule,
     ModalModule.forRoot()
 
