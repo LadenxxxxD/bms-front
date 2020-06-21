@@ -1,15 +1,89 @@
-<div id="table-info">
-    <div class="breadcrumb-container">
+<div id="table-container">
+    <section class="breadcrumb-container">
         <nz-breadcrumb>
             <nz-breadcrumb-item>
-                <a [routerLink]="['../login']">Home</a>
+                <a [routerLink]="['../login']">主页</a>
             </nz-breadcrumb-item>
-            <nz-breadcrumb-item>
-                Breadcrumb
-            </nz-breadcrumb-item>
+            <nz-breadcrumb-item>图书管理</nz-breadcrumb-item>
         </nz-breadcrumb>
-    </div>
-    <nz-table #filterTable [nzData]="listOfData" nzTableLayout="fixed">
+    </section>
+    <section class="search-container">
+        <div nz-row [nzGutter]="8" nzJustify="center" class="row-gutter">
+            <div nz-col [nzSpan]="2">
+                <span>图书ID</span>
+            </div>
+            <div nz-col [nzSpan]="6">
+                <nz-input-group [nzSuffix]="inputClearTpl">
+                    <input type="text" nz-input [(ngModel)]="inputValue" placeholder="图书ID" />
+                </nz-input-group>
+                <ng-template #inputClearTpl>
+                    <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="inputValue"
+                        (click)="inputValue = null">
+                    </i>
+                </ng-template>
+            </div>
+            <div nz-col [nzSpan]="2">
+            </div>
+            <div nz-col [nzSpan]="2">
+                <span>作者</span>
+            </div>
+            <div nz-col [nzSpan]="6">
+                <nz-input-group [nzSuffix]="inputClearTpl">
+                    <input type="text" nz-input [(ngModel)]="inputValue" placeholder="作者" />
+                </nz-input-group>
+                <ng-template #inputClearTpl>
+                    <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="inputValue"
+                        (click)="inputValue = null">
+                    </i>
+                </ng-template>
+            </div>
+        </div>
+        <div nz-row [nzGutter]="8" nzJustify="center" class="row-gutter">
+            <div nz-col [nzSpan]="2">
+                <span>书名</span>
+            </div>
+            <div nz-col [nzSpan]="6">
+                <nz-input-group [nzSuffix]="inputClearTpl">
+                    <input type="text" nz-input [(ngModel)]="inputValue" placeholder="书名" />
+                </nz-input-group>
+                <ng-template #inputClearTpl>
+                    <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="inputValue"
+                        (click)="inputValue = null">
+                    </i>
+                </ng-template>
+            </div>
+            <div nz-col [nzSpan]="2">
+            </div>
+            <div nz-col [nzSpan]="2">
+                <span>出版社</span>
+            </div>
+            <div nz-col [nzSpan]="6">
+                <nz-input-group [nzSuffix]="inputClearTpl">
+                    <input type="text" nz-input [(ngModel)]="inputValue" placeholder="出版社" />
+                </nz-input-group>
+                <ng-template #inputClearTpl>
+                    <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="inputValue"
+                        (click)="inputValue = null">
+                    </i>
+                </ng-template>
+            </div>
+        </div>
+        <div>
+            <div nz-row [nzGutter]="12" nzJustify="center" class="row-gutter btns">
+                <div nz-col [nzSpan]="3">
+                    <button nz-button nzType="primary">
+                        <i nz-icon nzType="search"></i>检索
+                    </button>
+                </div>
+                <div nz-col [nzSpan]="3">
+                    <button nz-button nzType="default">
+                        新增
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <nz-table #filterTable [nzData]="listOfData" nzTableLayout="fixed" class="table-main">
         <thead>
             <tr>
                 <th *ngFor="let column of listOfColumns" nzAlign="center" [nzSortOrder]="column.sortOrder"
