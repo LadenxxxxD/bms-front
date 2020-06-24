@@ -1,13 +1,13 @@
 #table-container{
     padding: 20px;
 }
-#table-container .breadcrumb-container{
+.breadcrumb-container{
     margin-bottom: 30px;
 }
-#table-container .search-container{
+.search-container{
     margin: 0 auto;
 }
-#table-container .row-gutter{
+.row-gutter{
     margin: 10px 0;
 }
 #table-container .table-main{

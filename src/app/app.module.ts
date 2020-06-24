@@ -16,13 +16,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { DetailsComponent } from './details/details.component';
 import { LibraryComponent } from './library/library.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DetailsComponent,
-    LibraryComponent
+    LibraryComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
