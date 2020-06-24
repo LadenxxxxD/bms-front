@@ -1,15 +1,15 @@
 <div class="alert alert-danger" *ngIf="errorMessage != null">{{errorMessage}}</div>
 <div class="form-signin">
-    <h1 class="h3 mb-3 font-weight-normal">请登录</h1>
-    <label for="inputEmail" class="sr-only">UserName</label>
-    <input type="text" id="userId" #userIdRef required autofocus/>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="password" #passwordRef required />
-    <div class="row">
-      <div class="col-md-4"><button class="btn btn-primary" (click)="onClick(userIdRef.value, passwordRef.value)">登录</button></div>
-      <div class="col-md-4"><button class="btn btn-primary" >注册</button></div>
-    </div>
+  <h1 class="h3 mb-3 font-weight-normal">请登录</h1>
+  <label for="inputEmail" class="sr-only">UserName</label>
+  <input type="text" id="userId" #userIdRef required autofocus />
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input type="password" id="password" #passwordRef required />
+  <div class="row">
+    <div class="col-md-4"><button class="btn btn-primary"
+        (click)="onClick(userIdRef.value, passwordRef.value)">登录</button></div>
+    <div class="col-md-4"><button class="btn btn-primary">注册</button></div>
+  </div>
 </div>
 
 <router-outlet></router-outlet>
-

@@ -17,13 +17,10 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { DetailsComponent } from './details/details.component';
 import { LibraryComponent } from './library/library.component';
 import { HeaderComponent } from './header/header.component';
-<<<<<<< HEAD
 import { QueryAdmiComponent } from './queryAdmi/queryAdmi.component';
 import { TesttableComponent } from './testtable/testtable.component';
 import { QueryUserComponent } from './queryUser/queryUser.component';
 import { BookService } from './service/queryBooksAll.service';
-=======
->>>>>>> 2a66dd5838117b3afcdfa6e70de3eb4f4c3f98d3
 
 @NgModule({
   declarations: [
@@ -31,27 +28,23 @@ import { BookService } from './service/queryBooksAll.service';
     LoginComponent,
     DetailsComponent,
     LibraryComponent,
-<<<<<<< HEAD
     HeaderComponent,
     QueryAdmiComponent,
     QueryUserComponent,
     TesttableComponent
-=======
-    HeaderComponent
->>>>>>> 2a66dd5838117b3afcdfa6e70de3eb4f4c3f98d3
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    BootstrapModalModule,
+    // BootstrapModalModule,
     BrowserAnimationsModule,
     NgZorroAntdModule,
     ModalModule.forRoot()
 
   ],
-  providers: [BsModalService,BookService],
+  providers: [BsModalService, BookService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

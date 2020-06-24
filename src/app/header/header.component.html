@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-<p>header works!</p>
-=======
 <div>
     <!-- <div class="tag-btn">
         <button class="btn btn-lg btn-primary" [ngClass]="{'btn-primary': type === '1'}"
@@ -16,9 +13,9 @@
     </div>
     <hr /> -->
     <ul nz-menu nzMode="horizontal">
-        <li nz-menu-item>查询借阅</li>
+        <li nz-menu-item routerLink="/library/queryUser">查询借阅</li>
         <li nz-menu-item>归还</li>
-        <li nz-menu-item nzSelected>图书管理</li>
+        <li nz-menu-item routerLink="/library" nzSelected>图书管理</li>
         <li nz-menu-item>日志</li>
         <li nz-menu-item>排行榜</li>
     </ul>
@@ -26,4 +23,3 @@
     <router-outlet></router-outlet>
 
 </div>
->>>>>>> 2a66dd5838117b3afcdfa6e70de3eb4f4c3f98d3
