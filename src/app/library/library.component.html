@@ -8,8 +8,8 @@
         </nz-breadcrumb>
     </section>
     <section class="search-container">
-        <div nz-row [nzGutter]="8" nzJustify="center" class="row-gutter">
-            <div nz-col [nzSpan]="2">
+        <div nz-row [nzGutter]="8" class="row-gutter">
+            <div nz-col [nzSpan]="2" nzOffset="3" nzAlign="bottom">
                 <span>图书ID</span>
             </div>
             <div nz-col [nzSpan]="6">
@@ -22,9 +22,7 @@
                     </i>
                 </ng-template>
             </div>
-            <div nz-col [nzSpan]="2">
-            </div>
-            <div nz-col [nzSpan]="2">
+            <div nz-col [nzSpan]="2" nzOffset="2">
                 <span>作者</span>
             </div>
             <div nz-col [nzSpan]="6">
@@ -38,8 +36,8 @@
                 </ng-template>
             </div>
         </div>
-        <div nz-row [nzGutter]="8" nzJustify="center" class="row-gutter">
-            <div nz-col [nzSpan]="2">
+        <div nz-row [nzGutter]="8" class="row-gutter">
+            <div nz-col [nzSpan]="2" nzOffset="3">
                 <span>书名</span>
             </div>
             <div nz-col [nzSpan]="6">
@@ -52,9 +50,7 @@
                     </i>
                 </ng-template>
             </div>
-            <div nz-col [nzSpan]="2">
-            </div>
-            <div nz-col [nzSpan]="2">
+            <div nz-col [nzSpan]="2" nzOffset="2">
                 <span>出版社</span>
             </div>
             <div nz-col [nzSpan]="6">
@@ -69,15 +65,15 @@
             </div>
         </div>
         <div>
-            <div nz-row [nzGutter]="12" nzJustify="center" class="row-gutter btns">
-                <div nz-col [nzSpan]="3">
+            <div nz-row [nzGutter]="8" nzJustify="center" class="row-gutter btns">
+                <div nz-col [nzSpan]="2">
                     <button nz-button nzType="primary">
-                        <i nz-icon nzType="search"></i>检索
+                        <i nz-icon nzType="search"></i><span>检索</span>
                     </button>
                 </div>
-                <div nz-col [nzSpan]="3">
-                    <button nz-button nzType="default">
-                        新增
+                <div nz-col [nzSpan]="2" nzOffset="2">
+                    <button nz-button nzType="default" (click)="showModal()">
+                        <span>新增</span>
                     </button>
                 </div>
             </div>
@@ -87,7 +83,7 @@
         <thead>
             <tr>
                 <th *ngFor="let column of listOfColumns" nzAlign="center" [nzSortOrder]="column.sortOrder"
-                    [nzSortFn]="column.sortFn" [nzSortDirections]="column.sortDirections"
+                    [nzSortFn]="column.sortFn" [nzSortDirections]="column.sortDirections" nzShowFilter=false
                     [nzFilterMultiple]="column.filterMultiple" [nzFilters]="column.listOfFilter"
                     [nzFilterFn]="column.filterFn">
                     {{ column.name }}
@@ -103,7 +99,7 @@
                 <td nzAlign="center">{{ data.educationName }}</td>
                 <td nzAlign="center">{{ data.quantity }}</td>
                 <td nzAlign="center">
-                    <a nz-button nzType="link" nzSize='small'>编辑</a>
+                    <a nz-button nzType="link" nzSize='small' (click)="showModal()">编辑</a>
                     <nz-divider nzType="vertical"></nz-divider>
                     <a nz-button nzType="link" nzDanger nzSize='small' nz-popconfirm nzPopconfirmTitle="确定删除?"
                         (nzOnConfirm)="deleteRow(data.bookId)">删除</a>
@@ -111,4 +107,86 @@
             </tr>
         </tbody>
     </nz-table>
+    <!-- 弹出模态框 -->
+    <nz-modal [(nzVisible)]="isVisible" nzTitle="Modal Title" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"
+        [nzOkLoading]="isOkLoading">
+        <div nz-row class="row-gutter">
+            <div nz-col nzSpan="4" nzOffset="3">图书ID</div>
+            <div nz-col nzSpan="10">
+                <nz-input-group [nzSuffix]="inputClearTpl">
+                    <input type="text" nz-input [(ngModel)]="inputValue" placeholder="图书ID" />
+                </nz-input-group>
+                <ng-template #inputClearTpl>
+                    <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="inputValue"
+                        (click)="inputValue = null">
+                    </i>
+                </ng-template>
+            </div>
+        </div>
+        <div nz-row class="row-gutter">
+            <div nz-col nzSpan="4" nzOffset="3">图书ID</div>
+            <div nz-col nzSpan="10">
+                <nz-input-group [nzSuffix]="inputClearTpl">
+                    <input type="text" nz-input [(ngModel)]="inputValue" placeholder="图书ID" />
+                </nz-input-group>
+                <ng-template #inputClearTpl>
+                    <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="inputValue"
+                        (click)="inputValue = null">
+                    </i>
+                </ng-template>
+            </div>
+        </div>
+        <div nz-row class="row-gutter">
+            <div nz-col nzSpan="4" nzOffset="3">书名</div>
+            <div nz-col nzSpan="10">
+                <nz-input-group [nzSuffix]="inputClearTpl">
+                    <input type="text" nz-input [(ngModel)]="inputValue" placeholder="书名" />
+                </nz-input-group>
+                <ng-template #inputClearTpl>
+                    <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="inputValue"
+                        (click)="inputValue = null">
+                    </i>
+                </ng-template>
+            </div>
+        </div>
+        <div nz-row class="row-gutter">
+            <div nz-col nzSpan="4" nzOffset="3">作者</div>
+            <div nz-col nzSpan="10">
+                <nz-input-group [nzSuffix]="inputClearTpl">
+                    <input type="text" nz-input [(ngModel)]="inputValue" placeholder="作者" />
+                </nz-input-group>
+                <ng-template #inputClearTpl>
+                    <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="inputValue"
+                        (click)="inputValue = null">
+                    </i>
+                </ng-template>
+            </div>
+        </div>
+        <div nz-row class="row-gutter">
+            <div nz-col nzSpan="4" nzOffset="3">出版社</div>
+            <div nz-col nzSpan="10">
+                <nz-input-group [nzSuffix]="inputClearTpl">
+                    <input type="text" nz-input [(ngModel)]="inputValue" placeholder="出版社" />
+                </nz-input-group>
+                <ng-template #inputClearTpl>
+                    <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="inputValue"
+                        (click)="inputValue = null">
+                    </i>
+                </ng-template>
+            </div>
+        </div>
+        <div nz-row class="row-gutter">
+            <div nz-col nzSpan="4" nzOffset="3">剩余数量</div>
+            <div nz-col nzSpan="10">
+                <nz-input-group [nzSuffix]="inputClearTpl">
+                    <input type="text" nz-input [(ngModel)]="inputValue" placeholder="剩余数量" />
+                </nz-input-group>
+                <ng-template #inputClearTpl>
+                    <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="inputValue"
+                        (click)="inputValue = null">
+                    </i>
+                </ng-template>
+            </div>
+        </div>
+    </nz-modal>
 </div>

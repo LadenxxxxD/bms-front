@@ -16,13 +16,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { DetailsComponent } from './details/details.component';
 import { LibraryComponent } from './library/library.component';
+import { HeaderComponent } from './header/header.component';
+import { QueryAdmiComponent } from './queryAdmi/queryAdmi.component';
+import { TesttableComponent } from './testtable/testtable.component';
+import { QueryUserComponent } from './queryUser/queryUser.component';
+import { BookService } from './service/queryBooksAll.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DetailsComponent,
-    LibraryComponent
+    LibraryComponent,
+    HeaderComponent,
+    QueryAdmiComponent,
+    QueryUserComponent,
+    TesttableComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +44,7 @@ import { LibraryComponent } from './library/library.component';
     ModalModule.forRoot()
 
   ],
-  providers: [BsModalService],
+  providers: [BsModalService,BookService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

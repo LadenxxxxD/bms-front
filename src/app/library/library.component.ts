@@ -26,6 +26,8 @@ interface ColumnItem {
   styleUrls: ['./library.component.css']
 })
 export class LibraryComponent implements OnInit {
+  isVisible = false;
+  isOkLoading = false;
 
   constructor() { }
 
@@ -94,6 +96,27 @@ export class LibraryComponent implements OnInit {
       educationName: "电子工业出版社",
       quantity: 27
     },
+    {
+      bookId: 'a13962',
+      bookName: 'JavaScript语言精粹',
+      authorName: '克罗克福德',
+      educationName: "电子工业出版社",
+      quantity: 27
+    },
+    {
+      bookId: 'a139623',
+      bookName: 'JavaScript语言精粹',
+      authorName: '克罗克福德',
+      educationName: "电子工业出版社",
+      quantity: 27
+    },
+    {
+      bookId: 'a1396',
+      bookName: 'JavaScript语言精粹',
+      authorName: '克罗克福德',
+      educationName: "电子工业出版社",
+      quantity: 27
+    }
   ];
 
 
@@ -102,4 +125,20 @@ export class LibraryComponent implements OnInit {
     this.listOfData = this.listOfData.filter(d => d.bookId !== id);
   }
 
+  showModal(): void {
+    this.isVisible = true;
+  }
+
+  handleOk(): void {
+    this.isOkLoading = true;
+    setTimeout(() => {
+      this.isVisible = false;
+      this.isOkLoading = false;
+    }, 3000);
+  }
+
+  handleCancel(): void {
+    this.isVisible = false;
+  }
 }
+
