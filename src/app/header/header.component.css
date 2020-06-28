@@ -1,4 +1,11 @@
 li:focus{
-    border: none;
     outline: none;
+}
+.navigator{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.router-outer{
+    padding: 20px 6%;
 }

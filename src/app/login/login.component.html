@@ -1,15 +1,42 @@
-<div class="alert alert-danger" *ngIf="errorMessage != null">{{errorMessage}}</div>
-<div class="form-signin">
-  <h1 class="h3 mb-3 font-weight-normal">请登录</h1>
-  <label for="inputEmail" class="sr-only">UserName</label>
-  <input type="text" id="userId" #userIdRef required autofocus />
-  <label for="inputPassword" class="sr-only">Password</label>
-  <input type="password" id="password" #passwordRef required />
-  <div class="row">
-    <div class="col-md-4"><button class="btn btn-primary"
-        (click)="onClick(userIdRef.value, passwordRef.value)">登录</button></div>
-    <div class="col-md-4"><button class="btn btn-primary">注册</button></div>
-  </div>
-</div>
-
-<router-outlet></router-outlet>
+<nz-layout style="height: 100vh;">
+  <nz-header>
+    <div class="logo">图书管理系统LOGO</div>
+  </nz-header>
+  <nz-content>
+    <nz-breadcrumb>
+      <nz-breadcrumb-item class="welcomeTitle">欢迎登录图书管理系统</nz-breadcrumb-item>
+    </nz-breadcrumb>
+    <div class="inner-content">
+      <form class="myForm login-form" nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <nz-form-item>
+          <nz-form-control nzErrorTip="请输入你的用户名!">
+            <nz-input-group nzPrefixIcon="user" nzPrefixIcon='user'>
+              <input type="text" nz-input formControlName="userName" placeholder="用户名" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="请输入你的密码!">
+            <nz-input-group nzPrefixIcon="lock">
+              <input type="password" nz-input formControlName="password" placeholder="密码" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <div nz-row class="login-form-margin">
+          <div nz-col [nzSpan]="12">
+            <label nz-checkbox formControlName="remember">
+              <span>记住我</span>
+            </label>
+          </div>
+          <div nz-col [nzSpan]="12">
+            <a class="login-form-forgot">忘记密码</a>
+          </div>
+        </div>
+        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'"
+          routerLink="/library/queryAdmin">登录</button>
+        没有账号 <a routerLink="/register"> 去注册</a>
+      </form>
+    </div>
+  </nz-content>
+  <nz-footer> Design ©2020 Implement By casually8Team</nz-footer>
+</nz-layout>

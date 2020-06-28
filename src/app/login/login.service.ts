@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { UserInfo } from './userInfo.model';
 
-import {logger} from 'codelyzer/util/logger';
-import {log} from 'util';
-import {catchError} from 'rxjs/operators';
+import { log } from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +16,9 @@ export class LoginService {
     const httpparams = new HttpParams(
       {
         fromString: 'userId=' + userId + '&password=' + password
-    });
+      });
     const findhttpOptions = {
-      headers: new HttpHeaders({'content-Type': 'application/json'}),
+      headers: new HttpHeaders({ 'content-Type': 'application/json' }),
       params: httpparams
     };
 
@@ -35,7 +33,7 @@ export class LoginService {
       log(`${operation} failed: ${error.message}`);
 
       return of(result as T);
-      };
+    };
   }
 
 }

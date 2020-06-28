@@ -1,27 +1,62 @@
-.form-signin {
-    width: 100%;
-    max-width: 330px;
-    padding: 15px;
-    margin: auto;
-  }
+.logo {
+  width: 130px;
+  height: 31px;
+  background: rgb(40, 50, 60);
+  margin: 16px 24px 16px 0;
+  float: left;
+  line-height: 31px;
+  text-align: center;
+  color: #c4afaf;
+}
 
-  .form-signin .form-control {
-    position: relative;
-    box-sizing: border-box;
-    height: auto;
-    padding: 10px;
-    font-size: 16px;
-  }
-  .form-signin .form-control:focus {
-    z-index: 2;
-  }
-  #app-login {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-  #password {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
+.welcomeTitle {
+  color: #a5a8ad;
+}
+
+[nz-menu] {
+  line-height: 64px;
+}
+
+nz-breadcrumb {
+  margin: 16px 0;
+}
+
+nz-content {
+  padding: 0 50px;
+}
+
+nz-footer {
+  text-align: center;
+}
+
+/* 中间白色部分 */
+.inner-content {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  background: #fff;
+  padding: 8% 32px;
+  /* min-height: 460px; */
+  height: 100%;
+  /* overflow: hidden; */
+}
+
+
+/* 表单 */
+
+.login-form-margin {
+  margin-bottom: 16px;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
+}
+
+.myForm {
+  margin: 0 auto;
+  width: 280px;
+}

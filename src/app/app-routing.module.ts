@@ -1,32 +1,39 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
+// components
+import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
-import { DetailsComponent } from './details/details.component';
-import { LibraryComponent } from './library/library.component';
-import { QueryAdmiComponent } from './queryAdmi/queryAdmi.component';
-import { TesttableComponent } from './testtable/testtable.component';
-import { QueryUserComponent } from './queryUser/queryUser.component';
-import { HeaderComponent } from "./header/header.component";
+import { RegisterComponent } from "./register/register.component";
+import { QueryAdminComponent } from './library/query-book/query-admin/query-admin.component';
+import { QueryUserComponent } from './library/query-book/query-user/query-user.component';
+import { ReturnBookComponent } from './library/return-book/return-book.component';
+import { ManageBookComponent } from './library/manage-book/manage-book.component';
+import { LoggerComponent } from './library/logger/logger.component';
+import { RankBoardComponent } from './library/rank-board/rank-board.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   {
     path: 'library', component: HeaderComponent,
     // canActivate: [AuthLoginGuard],
+    // 需要在顶部显示导航栏的页面写在children里面
     children: [
-      { path: '', component: LibraryComponent },
-      { path: 'queryAdmi', component: QueryAdmiComponent },
+      { path: 'queryAdmin', component: QueryAdminComponent },
       { path: 'queryUser', component: QueryUserComponent },
-      { path: 'test', component: TesttableComponent },
-      // { path: 'details', component: DetailsComponent },
-      // { path: 'books', component: BooksComponent }
+      { path: 'returnBook', component: ReturnBookComponent },
+      { path: 'manageBook', component: ManageBookComponent },
+      { path: 'logger', component: LoggerComponent },
+      { path: 'rankBoard', component: RankBoardComponent },
     ]
   },
   { path: '404', component: LoginComponent },
-  //放在最后确保前面完全执行
-  { path: '**', redirectTo: '404' },
+  // 放在最后确保前面完全执行
+  { path: '**', redirectTo: '404' }
+
 ];
 
 @NgModule({

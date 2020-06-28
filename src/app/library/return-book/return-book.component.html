@@ -1,0 +1,54 @@
+<!-- <app-details></app-details> -->
+<section class="breadcrumb-container">
+  <nz-breadcrumb>
+    <nz-breadcrumb-item>
+      <a [routerLink]="['../login']">主页</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>归还</nz-breadcrumb-item>
+  </nz-breadcrumb>
+</section>
+<div nz-row class="return-box">
+  <div nz-col nzSpan="8"></div>
+  <div nz-col nzSpan="8">
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="userID">用户ID</nz-form-label>
+        <nz-form-control [nzErrorTip]="errorTpl1">
+          <nz-input-group>
+            <input formControlName="userID" nz-input placeholder="用户ID" [(ngModel)]="userId" />
+          </nz-input-group>
+          <ng-template #errorTpl1 let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              请输入用户ID
+            </ng-container>
+            <ng-container *ngIf="control.hasError('maxLength')">
+              用户ID小于6位
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="bookID">图书ID</nz-form-label>
+        <nz-form-control [nzErrorTip]="errorTpl2">
+          <nz-input-group>
+            <input formControlName="bookID" nz-input placeholder="图书ID" [(ngModel)]="bookId" />
+          </nz-input-group>
+          <ng-template #errorTpl2 let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              请输入图书ID
+            </ng-container>
+            <ng-container *ngIf="control.hasError('maxLength')">
+              图书ID小于6位
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item style="text-align:center">
+        <nz-form-control>
+          <button nz-button nzType="primary" [disabled]="!validateForm.valid" (click)="rebook()">归还</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+  <div nz-col nzSpan="8"></div>
+</div>

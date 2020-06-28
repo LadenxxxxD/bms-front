@@ -1,42 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../login/login.service';
-import { Routes, ActivatedRoute, Router, NavigationExtras } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Subscription, of } from 'rxjs';
 
 @Component({
   selector: 'app-login',
-
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  providers: [LoginService]
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  validateForm!: FormGroup;
 
-  oneUser: any;
-  loginflg = false;
-  subscription: Subscription;
-  errorMessage: String;
-
-  constructor(private service: LoginService, private router: Router, private route: ActivatedRoute) { }
-
-  ngOnInit() {
-  }
-
-  onClick(userId, password) {
-    this.service.login(userId, password).subscribe(
-      data => {this.loginflg = data;
-        if(!this.loginflg) {
-          this.errorMessage = "用户或密码错误";
-        } else {
-          this.router.navigate(['/details'], { queryParams: { user : userId }});
-        }
-      });
-  }
-
-  ngOnDestroy() {
-    if (this.subscription !== undefined) {
-      this.subscription.unsubscribe();
+  submitForm(): void {
+    for (const i in this.validateForm.controls) {
+      this.validateForm.controls[i].markAsDirty();
+      this.validateForm.controls[i].updateValueAndValidity();
     }
   }
+  constructor(private fb: FormBuilder) { }
+
+  ngOnInit(): void {
+    this.validateForm = this.fb.group({
+      userName: [null, [Validators.required]],
+      password: [null, [Validators.required]],
+      remember: [true]
+    });
+  }
+
+
+
+
 }
