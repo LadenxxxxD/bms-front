@@ -19,14 +19,14 @@ body{
 
   width: 600px;
   height: 720px;
-  background: rgb(150, 197, 228);
-  position:absolute;
+  background: #f0f2f5;
+  /* position:absolute; */
   left:0;
   top: 0;
   bottom: 0;
   right: 0;
   margin: auto;
-  border-radius: 30px;
+  /* border-radius: 30px; */
 }
 
 .form{
@@ -34,9 +34,7 @@ body{
 margin-top: 30px;
 }
 
-.sexBox{
-  margin-left: 40%;
-}
+
 
 .hobbyBox{
   margin-left: 20%;
@@ -52,3 +50,72 @@ margin-top: 30px;
   margin-left: 30%;
 
 }
+
+
+/* ----------login的css--------- */
+.logo {
+  width: 130px;
+  height: 31px;
+  background: rgb(40, 50, 60);
+  margin: 16px 24px 16px 0;
+  float: left;
+  line-height: 31px;
+  text-align: center;
+  color: #c4afaf;
+}
+
+.welcomeTitle {
+  color: #a5a8ad;
+}
+
+[nz-menu] {
+  line-height: 64px;
+}
+
+nz-breadcrumb {
+  margin: 16px 0;
+}
+
+nz-content {
+  padding: 0 50px;
+}
+
+nz-footer {
+  text-align: center;
+}
+
+/* 中间白色部分 */
+.inner-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  padding: 24px;
+  min-height: 460px;
+}
+
+
+/* 表单 */
+
+.login-form {
+  max-width: 300px;
+}
+
+.login-form-margin {
+  margin-bottom: 16px;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
+}
+
+.myForm {
+  margin: 0 auto;
+  width: 300px;
+}
+
+/* --------login的css  end-------------- */

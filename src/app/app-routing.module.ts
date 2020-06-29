@@ -11,6 +11,7 @@ import { ReturnBookComponent } from './library/return-book/return-book.component
 import { ManageBookComponent } from './library/manage-book/manage-book.component';
 import { LoggerComponent } from './library/logger/logger.component';
 import { RankBoardComponent } from './library/rank-board/rank-board.component';
+import { NotFoundComponent } from "./error/404/not-found.component";
 
 
 const routes: Routes = [
@@ -30,7 +31,7 @@ const routes: Routes = [
       { path: 'rankBoard', component: RankBoardComponent },
     ]
   },
-  { path: '404', component: LoginComponent },
+  { path: '404', component: NotFoundComponent },
   // 放在最后确保前面完全执行
   { path: '**', redirectTo: '404' }
 

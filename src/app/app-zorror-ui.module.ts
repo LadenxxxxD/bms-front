@@ -14,6 +14,8 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzCascaderModule } from 'ng-zorro-antd/cascader';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzResultModule } from 'ng-zorro-antd/result';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 
 export const zorro = [
     NzButtonModule,
@@ -31,5 +33,7 @@ export const zorro = [
     NzDatePickerModule,
     NzMenuModule,
     NzCascaderModule,
-    NzMessageModule
+    NzMessageModule,
+    NzResultModule,
+    NzPopconfirmModule
 ]
