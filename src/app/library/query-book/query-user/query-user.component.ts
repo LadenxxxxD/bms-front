@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NzTableFilterFn, NzTableFilterList, NzTableSortFn, NzTableSortOrder } from 'ng-zorro-antd/table';
-import { BookService } from './query-book.service';
+import { UserBookService } from './query-book.service';
+import { BookInfo } from './bookInfo.model';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 interface DataItem {
   bookId: string;
@@ -8,6 +10,7 @@ interface DataItem {
   authorName: string;
   educationName: string;
   quantity: number;
+  bookImg: string;
 }
 
 interface ColumnItem {
@@ -28,14 +31,18 @@ interface ColumnItem {
 export class QueryUserComponent implements OnInit {
   isVisible = false;
   isOkLoading = false;
-  userId = ''; //用户ID
+  userId = ''; // 用户ID
   bookId = ''; // 图书ID
   authorName = ''; // 作者名
   bookName = ''; // 书名
   educationName = ''; // 出版社
-  count = ''; //剩余图书数量
+  count = ''; // 剩余图书数量
 
-  constructor(private bookService: BookService) { }
+  bookImg = '../assets/images/'; // 图书图片
+  currentId = ''; // 当前item的Id
+  expandSet = new Set<number>(); // 加号的Set
+
+  constructor(private bookService: UserBookService, private message: NzMessageService) { }
 
   // thead columns
   listOfColumns: ColumnItem[] = [
@@ -68,17 +75,25 @@ export class QueryUserComponent implements OnInit {
   }
   // 检索
   search() {
-    const that = this;
-    if (this.authorName === '' && this.bookName === '' && this.educationName === '') {
-      this.bookService.queryBooksAll().subscribe((result: any) => {
-        that.listOfData = result;
-      });
-    } else {
-      this.bookService.queryBookByUser(this.authorName, this.bookName, this.educationName).subscribe((result: any) => {
-        that.listOfData = result;
-      });
-    }
+    this.bookService.queryBooksByUser(this.bookId, this.authorName, this.bookName, this.educationName).subscribe((result: any) => {
+      if (result !== []) {
+        this.listOfData = result;
+      } else {
+        this.listOfData = [];
+      }
+    });
   }
 
+  // 全局提示
+  createMessage(type: string, str: string): void {
+    this.message.create(type, str);
+  }
+  // 加号展开的个数 既图书详情展开的个数
+  onExpandChange(id: number, checked: boolean): void {
+    if (checked) {
+      this.expandSet.add(id);
+    } else {
+      this.expandSet.delete(id);
+    }
+  }
 }
-

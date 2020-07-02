@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BookInfo } from './bookInfo.model';
+
 
 @Injectable()
 // 使用可被注入标签， 必须加入到一个provider里->放入到app.module里
-export class BookService {
+export class UserBookService {
   constructor(private httpClient: HttpClient) { }
   // 查询所有图书
   public queryBooksAll() {
@@ -32,8 +34,9 @@ export class BookService {
     return this.httpClient.post<boolean>('http://localhost:8080/queryUser/queryBookByEducationName', body);
   }
   // 点击借阅通过用户自定义词条查询
-  public queryBookByUser(authorName: string, bookName: string, educationName: string) {
+  public queryBooksByUser(bookId: string, authorName: string, bookName: string, educationName: string) {
     const body = {
+      bookId: bookId,
       authorName: authorName,
       bookName: bookName,
       educationName: educationName
@@ -50,6 +53,17 @@ export class BookService {
     const bodyJson = JSON.stringify(body);
     return this.httpClient.post<boolean>('http://localhost:8080/queryUser/lent', bodyJson);
   }
+  // 点击上传图片名
+  public upload(bookInfo: BookInfo) {
+    const body = {
+      bookId: bookInfo.getBookId(),
+      authorName: bookInfo.getAuthorName(),
+      educationName: bookInfo.getEducationName(),
+      bookName: bookInfo.getBookName(),
+      quantity: bookInfo.getQuantity(),
+      bookImg: bookInfo.getBookImg(),
+    };
+    const bodyJson = JSON.stringify(body);
+    return this.httpClient.post<boolean>('http://localhost:8080//queryUser/uploadBookInfo', bodyJson);
+  }
 }
-
-

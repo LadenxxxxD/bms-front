@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable()
 // 使用可被注入标签， 必须加入到一个provider里->放入到app.module里
 export class BookService {
   constructor(private httpClient: HttpClient) { }
+
   // 查询所有图书
   public queryBooksAll() {
-    const body = {};
-    return this.httpClient.post<boolean>('http://localhost:8080/queryUser/queryBooks', body);
+    return this.httpClient.post<boolean>('http://localhost:8080/queryUser/queryBooks', {});
   }
 
   public queryBookByAuthorName(authorName: string) {
@@ -27,7 +27,7 @@ export class BookService {
 
   public queryBookByEducationName(educationName: string) {
     const body = {
-      authorName: '工业'
+      educationName: educationName
     };
     return this.httpClient.post<boolean>('http://localhost:8080/queryUser/queryBookByEducationName', body);
   }

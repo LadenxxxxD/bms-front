@@ -71,25 +71,23 @@ export class QueryAdminComponent implements OnInit {
     }
   ];
   listOfData: DataItem[] = [];
-  ngOnInit() {
-  }
+  ngOnInit() { }
   // 检索
   search() {
-    const that = this;
     if (this.authorName === '' && this.bookName === '' && this.educationName === '') {
       this.bookService.queryBooksAll().subscribe((result: any) => {
-        that.listOfData = result;
+        this.listOfData = result;
       });
     } else {
       this.bookService.queryBookByUser(this.authorName, this.bookName, this.educationName).subscribe((result: any) => {
-        console.log(result);
         if (result !== []) {
-          that.listOfData = result;
+          this.listOfData = result;
         } else {
-          that.listOfData = [];
+          this.listOfData = [];
         }
       });
     }
+
   }
   // 点击借阅触发模态框
   showModal(data: any): void {
@@ -106,7 +104,6 @@ export class QueryAdminComponent implements OnInit {
   }
   // 点击模态框确定
   handleOk(): void {
-    const that = this;
     this.userId = this.modalUserId;
     this.bookService.lent(this.modalUserId, this.modalBookId).subscribe((result: any) => {
       if (result) {

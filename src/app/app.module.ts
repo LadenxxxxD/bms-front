@@ -25,6 +25,7 @@ import { NotFoundComponent } from './error/404/not-found.component';
 // services
 import { LoginService } from './login/login.service';
 import { BookService } from './library/query-book/query-admin/query-book.service';
+import { UserBookService } from './library/query-book/query-user/query-book.service';
 import { ManageBookService } from './library/manage-book/manage-book.service';
 
 @NgModule({
@@ -51,7 +52,7 @@ import { ManageBookService } from './library/manage-book/manage-book.service';
     BrowserAnimationsModule,
     ReactiveFormsModule
   ],
-  providers: [BookService, LoginService, FormBuilder, ManageBookService],
+  providers: [BookService, LoginService, FormBuilder, ManageBookService, UserBookService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
