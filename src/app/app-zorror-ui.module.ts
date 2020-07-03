@@ -16,6 +16,8 @@ import { NzCascaderModule } from 'ng-zorro-antd/cascader';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzResultModule } from 'ng-zorro-antd/result';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+
 
 export const zorro = [
     NzButtonModule,
@@ -35,5 +37,6 @@ export const zorro = [
     NzCascaderModule,
     NzMessageModule,
     NzResultModule,
-    NzPopconfirmModule
+    NzPopconfirmModule,
+    NzUploadModule
 ]

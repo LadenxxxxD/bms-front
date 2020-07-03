@@ -8,9 +8,7 @@ export class ManageBookService {
 
   public search(data: any) {
     // return this.httpClient.get('assets/testJson/getDetails.json', { params: data });
-    // return this.httpClient.get('http://localhost:8080/api/books/query/all');
-    const body = {};
-    return this.httpClient.post('http://localhost:8080/queryUser/queryBooks', body);
+    return this.httpClient.get('http://localhost:8080/api/books/query');
   }
 
   //查重图书id 如果图书id重复了就返回false
@@ -27,7 +25,7 @@ export class ManageBookService {
   // 查询所有图书
   public queryAllBooks() {
     // const params = {};
-    return this.httpClient.get('http://localhost:8080/api/books/query/all');
+    return this.httpClient.get('http://localhost:8080/api/books/query');
   }
 
   public queryBooks(bookId: string, authorName: string, bookName: string, educationName: string) {
@@ -39,13 +37,15 @@ export class ManageBookService {
     return this.httpClient.get('http://localhost:8080/api/books/query', { params: query });
   }
 
-  // 点击借阅quantity减1
-  public borrowBook(userId: string, bookId: string) {
-    const data = {
-      userId: userId,
-      bookId: bookId
-    };
-    return this.httpClient.put('http://localhost:8080/api/books/borrow', data);
+  public addBook(book: Book) {
+    return this.httpClient.post('http://localhost:8080/api/books/addBook', book);
   }
 
+  public updateBook(book: Book) {
+    return this.httpClient.put('http://localhost:8080/api/books/updateBook', book);
+  }
+
+  public deleteBook(bookId: string) {
+    return this.httpClient.delete('http://localhost:8080/api/books/delete/' + bookId);
+  }
 }

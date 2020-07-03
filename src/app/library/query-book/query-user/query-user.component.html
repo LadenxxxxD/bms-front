@@ -18,7 +18,7 @@
                 </nz-input-group>
                 <ng-template #inputClearTplBookId>
                     <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="bookId"
-                        (click)="bookId = null">
+                        (click)="bookId = ''">
                     </i>
                 </ng-template>
             </div>
@@ -31,7 +31,7 @@
                 </nz-input-group>
                 <ng-template #inputClearTplAuthorName>
                     <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="authorName"
-                        (click)="authorName = null">
+                        (click)="authorName = ''">
                     </i>
                 </ng-template>
             </div>
@@ -46,7 +46,7 @@
                 </nz-input-group>
                 <ng-template #inputClearTplBookName>
                     <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="bookName"
-                        (click)="bookName = null">
+                        (click)="bookName = ''">
                     </i>
                 </ng-template>
             </div>
@@ -59,7 +59,7 @@
                 </nz-input-group>
                 <ng-template #inputClearTplEducationName>
                     <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="educationName"
-                        (click)="educationName = null">
+                        (click)="educationName = ''">
                     </i>
                 </ng-template>
             </div>
@@ -77,7 +77,6 @@
     <nz-table #filterTable nzShowSizeChanger [nzData]="listOfData" nzTableLayout="fixed" class="table-main">
         <thead>
             <tr>
-                <th nzWidth="60px"></th>
                 <th *ngFor="let column of listOfColumns" nzAlign="center" [nzSortOrder]="column.sortOrder"
                     [nzSortFn]="column.sortFn" [nzSortDirections]="column.sortDirections" nzShowFilter="false">
                     {{ column.name }}
@@ -86,25 +85,30 @@
         </thead>
         <tbody>
             <ng-container *ngFor="let data of filterTable.data">
-                <tr>
-                    <td nzAlign="center" [nzExpand]="expandSet.has(data.bookId)"
-                        (nzExpandChange)="onExpandChange(data.bookId, $event)"></td>
+                <tr (click)="onExpandChange(data.bookId, isShowExpand)">
                     <td nzAlign="center">{{ data.bookId }}</td>
                     <td nzAlign="center">{{ data.bookName }}</td>
                     <td nzAlign="center">{{ data.authorName }}</td>
                     <td nzAlign="center">{{ data.educationName }}</td>
                     <td nzAlign="center">{{ data.quantity }}</td>
                 </tr>
-                <tr [nzExpand]="expandSet.has(data.bookId)">
-                    <div>
-                        <img class="bookimg" src="{{ bookImg + data.bookImg }}" alt="暂无该图书信息" />
-                    </div>
-                    <div class="bookDetail">
-                        <div>图书ID：{{ data.bookId }}</div>
-                        <div>书名：{{ data.bookName }}</div>
-                        <div>作者：{{ data.authorName }}</div>
-                        <div>出版社：{{ data.educationName }}</div>
-                        <div>库存：{{ data.quantity }}</div>
+                <tr [nzExpand]="expandSet.has(data.bookId)" style="position: relative;">
+                    <div class="book-detail-container">
+                        <div class="book-img-container">
+                            <img class="bookimg" src="http://img3m3.ddimg.cn/2/21/22628333-1_b_2.jpg" alt="暂无该图书信息" />
+                        </div>
+                        <div class="book-info">
+                            <div>图书ID：{{ data.bookId }}</div>
+                            <div>书名：{{ data.bookName }}</div>
+                            <div>作者：{{ data.authorName }}</div>
+                            <div>出版社：{{ data.educationName }}</div>
+                            <div>库存：{{ data.quantity }}</div>
+                        </div>
+                        <div class="book-description">
+                            《JavaScript高级程序设计(第3版)》是JavaScript超级畅销书的*版。《JavaScript高级程序设计》这一版除增加5章全新内容外，其他章节也有较大幅度的增补和修订，新内容篇幅约占三分之一。全书从JavaScript语言实现的各个组成部分——语言核心、DOM、BOM、事件模型讲起，深入浅出地探讨了面向对象编程、Ajax与Comet服务器端通信，HTML5表单、媒体、Canvas(包括WebGL)及Web
+                            Workers、地理定位、跨文档传递消息、客户端存储(包括IndexedDB)等新API，还介绍了离线应用和与维护、性能、部署相关的*开发实践。
+                        </div>
+
                     </div>
                 </tr>
             </ng-container>

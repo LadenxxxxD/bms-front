@@ -13,12 +13,12 @@
                 <span>图书ID</span>
             </div>
             <div nz-col [nzSpan]="6">
-                <nz-input-group [nzSuffix]="inputClearTpl">
+                <nz-input-group [nzSuffix]="inputClearTplBookId">
                     <input type="text" nz-input [(ngModel)]="searchData.bookId" placeholder="图书ID" />
                 </nz-input-group>
-                <ng-template #inputClearTpl>
+                <ng-template #inputClearTplBookId>
                     <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle"
-                        *ngIf="searchData.bookId" (click)="searchData.bookId = null">
+                        *ngIf="searchData.bookId" (click)="searchData.bookId = ''">
                     </i>
                 </ng-template>
             </div>
@@ -26,12 +26,12 @@
                 <span>作者</span>
             </div>
             <div nz-col [nzSpan]="6">
-                <nz-input-group [nzSuffix]="inputClearTpl">
+                <nz-input-group [nzSuffix]="inputClearTplAuthorName">
                     <input type="text" nz-input [(ngModel)]="searchData.authorName" placeholder="作者" />
                 </nz-input-group>
-                <ng-template #inputClearTpl>
+                <ng-template #inputClearTplAuthorName>
                     <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle"
-                        *ngIf="searchData.authorName" (click)="searchData.authorName = null">
+                        *ngIf="searchData.authorName" (click)="searchData.authorName = ''">
                     </i>
                 </ng-template>
             </div>
@@ -41,12 +41,12 @@
                 <span>书名</span>
             </div>
             <div nz-col [nzSpan]="6">
-                <nz-input-group [nzSuffix]="inputClearTpl">
+                <nz-input-group [nzSuffix]="inputClearTplBookName">
                     <input type="text" nz-input [(ngModel)]="searchData.bookName" placeholder="书名" />
                 </nz-input-group>
-                <ng-template #inputClearTpl>
+                <ng-template #inputClearTplBookName>
                     <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle"
-                        *ngIf="searchData.bookName" (click)="searchData.bookName = null">
+                        *ngIf="searchData.bookName" (click)="searchData.bookName = ''">
                     </i>
                 </ng-template>
             </div>
@@ -54,12 +54,12 @@
                 <span>出版社</span>
             </div>
             <div nz-col [nzSpan]="6">
-                <nz-input-group [nzSuffix]="inputClearTpl">
+                <nz-input-group [nzSuffix]="inputClearTplEducationName">
                     <input type="text" nz-input [(ngModel)]="searchData.educationName" placeholder="出版社" />
                 </nz-input-group>
-                <ng-template #inputClearTpl>
+                <ng-template #inputClearTplEducationName>
                     <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle"
-                        *ngIf="searchData.educationName" (click)="searchData.educationName = null">
+                        *ngIf="searchData.educationName" (click)="searchData.educationName = ''">
                     </i>
                 </ng-template>
             </div>
@@ -108,65 +108,98 @@
     <!-- 弹出模态框 -->
     <nz-modal [(nzVisible)]="isShowModal" nzTitle="{{isInsertStat?'新增':'编辑'}}" (nzOnCancel)="handleCancel()"
         (nzOnOk)="handleOk()" [nzOkLoading]="isOkLoading">
-        <div nz-row class="row-gutter">
-            <div nz-col nzSpan="4" nzOffset="3">图书ID</div>
-            <div nz-col nzSpan="10">
-                <nz-input-group [nzSuffix]="bookId">
-                    <input type="text" nz-input [(ngModel)]="modalData.bookId" placeholder="图书ID"
-                        [disabled]="!isInsertStat" />
-                </nz-input-group>
-                <ng-template #bookId>
-                    <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle"
-                        *ngIf="modalData.bookId && isInsertStat" (click)="modalData.bookId = null"></i>
-                </ng-template>
+        <div class="modal-content">
+            <div nz-row class="row-gutter">
+                <div nz-col nzSpan="4" nzOffset="3">图书ID</div>
+                <div nz-col nzSpan="12">
+                    <nz-input-group [nzSuffix]="bookId">
+                        <input type="text" nz-input [(ngModel)]="modalData.bookId" placeholder="图书ID"
+                            [disabled]="!isInsertStat" />
+                    </nz-input-group>
+                    <ng-template #bookId>
+                        <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle"
+                            *ngIf="modalData.bookId && isInsertStat" (click)="modalData.bookId = ''"></i>
+                    </ng-template>
+                </div>
             </div>
-        </div>
-        <div nz-row class="row-gutter">
-            <div nz-col nzSpan="4" nzOffset="3">书名</div>
-            <div nz-col nzSpan="10">
-                <nz-input-group [nzSuffix]="bookName">
-                    <input type="text" nz-input [(ngModel)]="modalData.bookName" placeholder="书名" />
-                </nz-input-group>
-                <ng-template #bookName>
-                    <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle"
-                        *ngIf="modalData.bookName" (click)="modalData.bookName = null"></i>
-                </ng-template>
+            <div nz-row class="row-gutter">
+                <div nz-col nzSpan="4" nzOffset="3">书名</div>
+                <div nz-col nzSpan="12">
+                    <nz-input-group [nzSuffix]="bookName">
+                        <input type="text" nz-input [(ngModel)]="modalData.bookName" placeholder="书名" />
+                    </nz-input-group>
+                    <ng-template #bookName>
+                        <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle"
+                            *ngIf="modalData.bookName" (click)="modalData.bookName = ''"></i>
+                    </ng-template>
+                </div>
             </div>
-        </div>
-        <div nz-row class="row-gutter">
-            <div nz-col nzSpan="4" nzOffset="3">作者</div>
-            <div nz-col nzSpan="10">
-                <nz-input-group [nzSuffix]="authorName">
-                    <input type="text" nz-input [(ngModel)]="modalData.authorName" placeholder="作者" />
-                </nz-input-group>
-                <ng-template #authorName>
-                    <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle"
-                        *ngIf="modalData.authorName" (click)="modalData.authorName = null"></i>
-                </ng-template>
+            <div nz-row class="row-gutter">
+                <div nz-col nzSpan="4" nzOffset="3">作者</div>
+                <div nz-col nzSpan="12">
+                    <nz-input-group [nzSuffix]="authorName">
+                        <input type="text" nz-input [(ngModel)]="modalData.authorName" placeholder="作者" />
+                    </nz-input-group>
+                    <ng-template #authorName>
+                        <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle"
+                            *ngIf="modalData.authorName" (click)="modalData.authorName = ''"></i>
+                    </ng-template>
+                </div>
             </div>
-        </div>
-        <div nz-row class="row-gutter">
-            <div nz-col nzSpan="4" nzOffset="3">出版社</div>
-            <div nz-col nzSpan="10">
-                <nz-input-group [nzSuffix]="educationName">
-                    <input type="text" nz-input [(ngModel)]="modalData.educationName" placeholder="出版社" />
-                </nz-input-group>
-                <ng-template #educationName>
-                    <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle"
-                        *ngIf="modalData.educationName" (click)="modalData.educationName = null"></i>
-                </ng-template>
+            <div nz-row class="row-gutter">
+                <div nz-col nzSpan="4" nzOffset="3">出版社</div>
+                <div nz-col nzSpan="12">
+                    <nz-input-group [nzSuffix]="educationName">
+                        <input type="text" nz-input [(ngModel)]="modalData.educationName" placeholder="出版社" />
+                    </nz-input-group>
+                    <ng-template #educationName>
+                        <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle"
+                            *ngIf="modalData.educationName" (click)="modalData.educationName = ''"></i>
+                    </ng-template>
+                </div>
             </div>
-        </div>
-        <div nz-row class="row-gutter">
-            <div nz-col nzSpan="4" nzOffset="3">剩余数量</div>
-            <div nz-col nzSpan="10">
-                <nz-input-group [nzSuffix]="quantity">
-                    <input type="text" nz-input [(ngModel)]="modalData.quantity" placeholder="剩余数量" />
-                </nz-input-group>
-                <ng-template #quantity>
-                    <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle"
-                        *ngIf="modalData.quantity" (click)="modalData.quantity = null"></i>
-                </ng-template>
+            <div nz-row class="row-gutter">
+                <div nz-col nzSpan="4" nzOffset="3">剩余数量</div>
+                <div nz-col nzSpan="12">
+                    <nz-input-group [nzSuffix]="quantity">
+                        <input type="text" nz-input [(ngModel)]="modalData.quantity" placeholder="剩余数量" />
+                    </nz-input-group>
+                    <ng-template #quantity>
+                        <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle"
+                            *ngIf="modalData.quantity" (click)="modalData.quantity = ''"></i>
+                    </ng-template>
+                </div>
+            </div>
+            <div nz-row class="row-gutter">
+                <div nz-col nzSpan="4" nzOffset="3">图书详情</div>
+                <div nz-col nzSpan="12">
+                    <nz-input-group [nzSuffix]="bookDescription">
+                        <input type="text" nz-input [(ngModel)]="modalData.bookDescription" placeholder="图书详情" />
+                    </nz-input-group>
+                    <ng-template #bookDescription>
+                        <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle"
+                            *ngIf="modalData.bookDescription" (click)="modalData.bookDescription = ''"></i>
+                    </ng-template>
+                </div>
+            </div>
+            <div nz-row class="row-gutter">
+                <div nz-col nzSpan="4" nzOffset="3">封面地址</div>
+                <div nz-col nzSpan="8">
+                    <nz-input-group [nzSuffix]="bookImg">
+                        <input type="text" nz-input [(ngModel)]="modalData.bookImg" placeholder="封面地址" />
+                    </nz-input-group>
+                    <ng-template #bookImg>
+                        <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle"
+                            *ngIf="modalData.bookImg" (click)="modalData.bookImg = ''"></i>
+                    </ng-template>
+                </div>
+                <div nz-col nzSpan="4">
+                    <nz-upload nzAccept="image/png,image/jpeg"
+                        nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" [nzFileList]="fileList"
+                        nzShowUploadList="false" (nzChange)="handleChange($event)">
+                        <button nz-button><i nz-icon nzType="upload"></i>Upload</button>
+                    </nz-upload>
+                </div>
             </div>
         </div>
     </nz-modal>

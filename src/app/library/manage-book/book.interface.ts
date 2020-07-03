@@ -4,4 +4,6 @@ export interface Book {
     authorName: string;
     educationName: string;
     quantity: number;
+    bookDescription: string;
+    bookImg: string;
 }
