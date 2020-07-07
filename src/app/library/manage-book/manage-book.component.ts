@@ -198,8 +198,8 @@ export class ManageBookComponent implements OnInit {
     });
 
     this.fileList = fileList;
+    console.log(this.fileList);
   }
-
 }
 
 var clone = (function f(obj) {

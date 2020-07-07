@@ -79,7 +79,7 @@
             </div>
         </div>
     </section>
-    <nz-table #filterTable [nzData]="listOfData" nzTableLayout="fixed" class="table-main">
+    <nz-table #filterTable nzShowSizeChanger [nzData]="listOfData" nzTableLayout="fixed" class="table-main">
         <thead>
             <tr>
                 <th *ngFor="let column of listOfColumns" nzAlign="center" [nzSortOrder]="column.sortOrder"
@@ -111,7 +111,7 @@
         <div class="modal-content">
             <div nz-row class="row-gutter">
                 <div nz-col nzSpan="4" nzOffset="3">图书ID</div>
-                <div nz-col nzSpan="12">
+                <div nz-col nzSpan="10">
                     <nz-input-group [nzSuffix]="bookId">
                         <input type="text" nz-input [(ngModel)]="modalData.bookId" placeholder="图书ID"
                             [disabled]="!isInsertStat" />
@@ -124,7 +124,7 @@
             </div>
             <div nz-row class="row-gutter">
                 <div nz-col nzSpan="4" nzOffset="3">书名</div>
-                <div nz-col nzSpan="12">
+                <div nz-col nzSpan="10">
                     <nz-input-group [nzSuffix]="bookName">
                         <input type="text" nz-input [(ngModel)]="modalData.bookName" placeholder="书名" />
                     </nz-input-group>
@@ -136,7 +136,7 @@
             </div>
             <div nz-row class="row-gutter">
                 <div nz-col nzSpan="4" nzOffset="3">作者</div>
-                <div nz-col nzSpan="12">
+                <div nz-col nzSpan="10">
                     <nz-input-group [nzSuffix]="authorName">
                         <input type="text" nz-input [(ngModel)]="modalData.authorName" placeholder="作者" />
                     </nz-input-group>
@@ -148,7 +148,7 @@
             </div>
             <div nz-row class="row-gutter">
                 <div nz-col nzSpan="4" nzOffset="3">出版社</div>
-                <div nz-col nzSpan="12">
+                <div nz-col nzSpan="10">
                     <nz-input-group [nzSuffix]="educationName">
                         <input type="text" nz-input [(ngModel)]="modalData.educationName" placeholder="出版社" />
                     </nz-input-group>
@@ -160,7 +160,7 @@
             </div>
             <div nz-row class="row-gutter">
                 <div nz-col nzSpan="4" nzOffset="3">剩余数量</div>
-                <div nz-col nzSpan="12">
+                <div nz-col nzSpan="10">
                     <nz-input-group [nzSuffix]="quantity">
                         <input type="text" nz-input [(ngModel)]="modalData.quantity" placeholder="剩余数量" />
                     </nz-input-group>
@@ -172,7 +172,7 @@
             </div>
             <div nz-row class="row-gutter">
                 <div nz-col nzSpan="4" nzOffset="3">图书详情</div>
-                <div nz-col nzSpan="12">
+                <div nz-col nzSpan="10">
                     <nz-input-group [nzSuffix]="bookDescription">
                         <input type="text" nz-input [(ngModel)]="modalData.bookDescription" placeholder="图书详情" />
                     </nz-input-group>
@@ -184,7 +184,7 @@
             </div>
             <div nz-row class="row-gutter">
                 <div nz-col nzSpan="4" nzOffset="3">封面地址</div>
-                <div nz-col nzSpan="8">
+                <div nz-col nzSpan="10">
                     <nz-input-group [nzSuffix]="bookImg">
                         <input type="text" nz-input [(ngModel)]="modalData.bookImg" placeholder="封面地址" />
                     </nz-input-group>
@@ -193,12 +193,15 @@
                             *ngIf="modalData.bookImg" (click)="modalData.bookImg = ''"></i>
                     </ng-template>
                 </div>
-                <div nz-col nzSpan="4">
-                    <nz-upload nzAccept="image/png,image/jpeg"
-                        nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" [nzFileList]="fileList"
-                        nzShowUploadList="false" (nzChange)="handleChange($event)">
+            </div>
+            <div nz-row class="row-gutter">
+                <div nz-col nzSpan="4" nzOffset="3">封面上传</div>
+                <div nz-col nzSpan="8">
+                    <nz-upload nzAccept="image/png,image/jpeg" nzAction="http://localhost:8080/api/books/uploadBookImg"
+                        [nzFileList]="fileList" nzShowUploadList="false" (nzChange)="handleChange($event)">
                         <button nz-button><i nz-icon nzType="upload"></i>Upload</button>
                     </nz-upload>
+                    <!-- nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" -->
                 </div>
             </div>
         </div>

@@ -95,7 +95,9 @@
                 <tr [nzExpand]="expandSet.has(data.bookId)" style="position: relative;">
                     <div class="book-detail-container">
                         <div class="book-img-container">
-                            <img class="bookimg" src="http://img3m3.ddimg.cn/2/21/22628333-1_b_2.jpg" alt="暂无该图书信息" />
+                            <img class="bookimg"
+                                src="{{data.bookImg?data.bookImg:'../../../../../../assets/images/nopic.jpg'}}"
+                                alt="暂无该图书信息" />
                         </div>
                         <div class="book-info">
                             <div>图书ID：{{ data.bookId }}</div>
@@ -104,9 +106,8 @@
                             <div>出版社：{{ data.educationName }}</div>
                             <div>库存：{{ data.quantity }}</div>
                         </div>
-                        <div class="book-description">
-                            《JavaScript高级程序设计(第3版)》是JavaScript超级畅销书的*版。《JavaScript高级程序设计》这一版除增加5章全新内容外，其他章节也有较大幅度的增补和修订，新内容篇幅约占三分之一。全书从JavaScript语言实现的各个组成部分——语言核心、DOM、BOM、事件模型讲起，深入浅出地探讨了面向对象编程、Ajax与Comet服务器端通信，HTML5表单、媒体、Canvas(包括WebGL)及Web
-                            Workers、地理定位、跨文档传递消息、客户端存储(包括IndexedDB)等新API，还介绍了离线应用和与维护、性能、部署相关的*开发实践。
+                        <div class=" book-description">
+                            {{data.bookDescription?data.bookDescription:'本商品暂无详情。'}}
                         </div>
 
                     </div>

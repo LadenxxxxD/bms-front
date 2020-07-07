@@ -92,8 +92,7 @@
   <thead>
     <tr>
       <th *ngFor="let column of listOfColumns" nzAlign="center" [nzSortOrder]="column.sortOrder"
-        [nzSortFn]="column.sortFn" [nzSortDirections]="column.sortDirections" nzShowFilter="false"
-        [nzFilterMultiple]="column.filterMultiple" [nzFilters]="column.listOfFilter" [nzFilterFn]="column.filterFn">
+        [nzSortFn]="column.sortFn" [nzSortDirections]="column.sortDirections" nzShowFilter="false">
         {{ column.name }}
       </th>
       <th nzWidth="140px" nzAlign="center">操作</th>

@@ -11,6 +11,7 @@ interface DataItem {
   educationName: string;
   quantity: number;
   bookImg: string;
+  bookDescription: string;
 }
 
 interface ColumnItem {
@@ -37,8 +38,10 @@ export class QueryUserComponent implements OnInit {
   bookName = ''; // 书名
   educationName = ''; // 出版社
   count = ''; // 剩余图书数量
-
   bookImg = '../assets/images/'; // 图书图片
+  description = '';
+
+
   currentId = ''; // 当前item的Id
   expandSet = new Set<number>(); // 加号的Set
   isShowExpand: boolean = false;
