@@ -74,23 +74,20 @@ export class QueryAdminComponent implements OnInit {
   ngOnInit() { }
   // 检索
   search() {
-    if (this.authorName === '' && this.bookName === '' && this.educationName === '') {
-      this.bookService.queryBooksAll().subscribe((result: any) => {
-        this.listOfData = result;
-      });
-    } else {
-      this.bookService.queryBookByUser(this.authorName, this.bookName, this.educationName).subscribe((result: any) => {
-        if (result !== []) {
-          this.listOfData = result;
-        } else {
-          this.listOfData = [];
-        }
-      });
-    }
+    // if (this.authorName === '' && this.bookName === '' && this.educationName === '') {
+    //   this.bookService.queryBooksAll().subscribe((result: any) => {
+    //     this.listOfData = result;
+    //   });
+    // } else {
+    this.bookService.queryBooks(this.bookId, this.authorName, this.bookName, this.educationName).subscribe((result: any) => {
+      this.listOfData = result;
+    });
+    // }
 
   }
   // 点击借阅触发模态框
   showModal(data: any): void {
+    this.modalUserId = this.userId;
     this.modalBookId = data.bookId;
     this.modalBookName = data.bookName;
     this.modalAuthorName = data.authorName;
@@ -104,6 +101,10 @@ export class QueryAdminComponent implements OnInit {
   }
   // 点击模态框确定
   handleOk(): void {
+    if (!this.modalUserId) {
+      this.createMessage('error', '请输入用户ID！');
+      return;
+    }
     this.userId = this.modalUserId;
     this.bookService.lent(this.modalUserId, this.modalBookId).subscribe((result: any) => {
       if (result) {

@@ -11,6 +11,7 @@ interface DataItem {
   educationName: string;
   quantity: number;
   bookImg: string;
+  bookDescription: string;
 }
 
 interface ColumnItem {
@@ -37,10 +38,14 @@ export class QueryUserComponent implements OnInit {
   bookName = ''; // 书名
   educationName = ''; // 出版社
   count = ''; // 剩余图书数量
-
   bookImg = '../assets/images/'; // 图书图片
+  description = '';
+
+
   currentId = ''; // 当前item的Id
   expandSet = new Set<number>(); // 加号的Set
+  isShowExpand: boolean = false;
+  currentExpand: number;
 
   constructor(private bookService: UserBookService, private message: NzMessageService) { }
 
@@ -75,12 +80,8 @@ export class QueryUserComponent implements OnInit {
   }
   // 检索
   search() {
-    this.bookService.queryBooksByUser(this.bookId, this.authorName, this.bookName, this.educationName).subscribe((result: any) => {
-      if (result !== []) {
-        this.listOfData = result;
-      } else {
-        this.listOfData = [];
-      }
+    this.bookService.queryBooks(this.bookId, this.authorName, this.bookName, this.educationName).subscribe((result: any) => {
+      this.listOfData = result;
     });
   }
 
@@ -90,10 +91,16 @@ export class QueryUserComponent implements OnInit {
   }
   // 加号展开的个数 既图书详情展开的个数
   onExpandChange(id: number, checked: boolean): void {
-    if (checked) {
+    if (id !== this.currentExpand) {
+      this.currentExpand = id;
+      checked = this.isShowExpand = false;
+      this.expandSet = new Set<number>();
+    }
+    if (!checked) {
       this.expandSet.add(id);
     } else {
       this.expandSet.delete(id);
     }
+    this.isShowExpand = !checked;
   }
 }

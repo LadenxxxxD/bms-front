@@ -13,3 +13,13 @@
 #table-container .btns{
     margin-top: 20px;
 }
+.ant-modal{
+    width: 800px;
+}
+.modal-content{
+    /* display: flex; */
+    /* flex-direction: row; */
+}
+.update-img{
+    /* flex: 1; */
+}
