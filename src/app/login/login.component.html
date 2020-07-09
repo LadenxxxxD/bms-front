@@ -29,11 +29,11 @@
             </label>
           </div>
           <div nz-col [nzSpan]="12">
-            <a class="login-form-forgot">忘记密码</a>
+            <a class="login-form-forgot" (click) = "testToken()">忘记密码</a>
           </div>
         </div>
         <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'"
-          routerLink="/library/queryAdmin">登录</button>
+          (click) = "login()">登录</button>
         没有账号 <a routerLink="/register"> 去注册</a>
       </form>
     </div>
