@@ -26,40 +26,42 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  
+
   login(): void {
     const that = this;
-    console.log(this.validateForm.value);
-    this.loginService.login(this.validateForm.value.userName,this.validateForm.value.password).subscribe((identity: any) => {
+    if (this.validateForm.value.userName == null || this.validateForm.value.userName == '' || this.validateForm.value.password == null || this.validateForm.value.password == '') {
+      console.log('用户名密码空，不向后端发送请求');
+      return;
+    }
+    this.loginService.login(this.validateForm.value.userName, this.validateForm.value.password).subscribe((identity: any) => {
+
       //如果密码正确identity为true进入下一个页面
-      console.log(identity);
-      localStorage.setItem("token",identity.token);
-      console.log(window.localStorage);
+      localStorage.setItem("token", identity.token);
+      // console.log(window.localStorage);
       //后端返回的null类型被转为字符串
-      console.log(identity.authority == "null");
-      if(identity.authority != "null") {
-        if(identity.authority == "admin") {
-          localStorage.setItem("identity","admin");
+      if (identity.authority !== "null") {
+        if (identity.authority == "admin") {
+          localStorage.setItem("identity", "admin");
           that.router.navigate(['/library/queryAdmin']);
         }
-        else if(identity.authority == "user") {
-          localStorage.setItem("identity","user");
+        else if (identity.authority == "user") {
+          localStorage.setItem("identity", "user");
           that.router.navigate(['/library/queryUser']);
         }
       }
-      else{
+      else {
         alert('用户名或密码错误！');
       }
     });
-    
+
   }
 
   testToken(): void {
-    if(localStorage.getItem("token") != null) {
-      this.loginService.test(localStorage.getItem("token")).subscribe((res: any)=>{
+    if (localStorage.getItem("token") != null) {
+      this.loginService.test(localStorage.getItem("token")).subscribe((res: any) => {
       });
     }
-    else{
+    else {
       console.log("localStorage里的token为空");
     }
   }

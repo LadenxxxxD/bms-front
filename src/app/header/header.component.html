@@ -1,10 +1,11 @@
 <div>
     <ul nz-menu nzMode="horizontal" class="navigator">
-        <li nz-menu-item routerLink="/library/queryAdmin" nzSelected>查询借阅</li>
+        <!-- <li nz-menu-item routerLink="/library/queryAdmin" nzSelected>查询借阅</li>
         <li nz-menu-item routerLink="/library/returnBook">归还</li>
         <li nz-menu-item routerLink="/library/manageBook">图书管理</li>
         <li nz-menu-item routerLink="/library/logger">日志</li>
-        <li nz-menu-item routerLink="/library/rankBoard">排行榜</li>
+        <li nz-menu-item routerLink="/library/rankBoard">排行榜</li> -->
+        <li *ngFor="let item of navigateMap" nz-menu-item [routerLink]="item.url">{{item.title}}</li>
     </ul>
     <div class="router-outer">
         <router-outlet></router-outlet>

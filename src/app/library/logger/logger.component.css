@@ -8,3 +8,8 @@
 .box-none{
   display: none;
 }
+.btns{
+  display: center;
+  justify-content: center;
+  align-items: center;
+}

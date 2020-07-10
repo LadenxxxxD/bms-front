@@ -9,56 +9,40 @@ import { log } from 'util';
   providedIn: 'root'
 })
 export class LoginService {
+  authority: string = null;
 
   constructor(private httpClient: HttpClient) { }
-  //ʱ��ע�͵���ǰ��֪��˭д��
-  // login(userId: String, password: String): Observable<any> {
-  //   const httpparams = new HttpParams(
-  //     {
-  //       fromString: 'userId=' + userId + '&password=' + password
-  //     });
-  //   const findhttpOptions = {
-  //     headers: new HttpHeaders({ 'content-Type': 'application/json' }),
-  //     params: httpparams
-  //   };
 
-  //   return this.httpClient.get('http://localhost:8080/login', findhttpOptions);
-  // }
-
-//ʱ��д��login
-  login(userName: string, password: string):Observable<any> {
-    console.log(userName+' '+password);
+  login(userName: string, password: string): Observable<any> {
     const body = {
       userName: userName,
       password: password
     }
-    if(userName == null || userName == '' || password == null || password == '') {
-      //�п��Ƿ�����
-      console.log('用户名密码空，不向后端发送请求');
-    }
-    else{
-      return this.httpClient.post('http://localhost:8080/login', body);
-    }
-    
-}
+    const obs = this.httpClient.post('http://localhost:8080/login', body);
+    obs.subscribe((identity: any) => {
+      this.authority = identity.authority;
+    });
+    return obs;
 
-    test(token: string):Observable<any> {
-      const header = new HttpHeaders().set("Content-Type", "application/json").set("a",token);
-      const body = {
-        token: token
-      }
-      console.log(window.localStorage);
-      return this.httpClient.post('http://localhost:8080/test', body,{headers: header, params:body});
+  }
+
+  test(token: string): Observable<any> {
+    const header = new HttpHeaders().set("Content-Type", "application/json").set("a", token);
+    const body = {
+      token: token
     }
+    return this.httpClient.post('http://localhost:8080/test', body, { headers: header, params: body });
+  }
 
   private handleError<T>(operation = 'operation', result?: T) {
-
     return (error: any): Observable<T> => {
-
       log(`${operation} failed: ${error.message}`);
-
       return of(result as T);
     };
+  }
+
+  public getAuthority() {
+    return this.authority;
   }
 
 }

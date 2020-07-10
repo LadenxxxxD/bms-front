@@ -1,1 +1,44 @@
-<p>rank-board works!</p>
+<section class="breadcrumb-container">
+    <nz-breadcrumb>
+        <nz-breadcrumb-item>
+            <a [routerLink]="['../login']">主页</a>
+        </nz-breadcrumb-item>
+        <nz-breadcrumb-item>排行榜</nz-breadcrumb-item>
+    </nz-breadcrumb>
+</section>
+<div nz-row>
+    <div nz-col nzSpan="11" nzOffset="1">
+        <nz-table #basicTable [nzData]="bookRankList" [nzShowPagination]="false">
+            <thead>
+                <tr>
+                    <th>书名</th>
+                    <th>作者</th>
+                    <th>借阅次数</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of bookRankList">
+                    <td>{{data.bookName}}</td>
+                    <td>{{data.authorName}}</td>
+                    <td>{{data.countLentNum}}</td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+    <div nz-col nzSpan="8" nzOffset="2">
+        <nz-table #basicTable [nzData]="userRankList" [nzShowPagination]="false">
+            <thead>
+                <tr>
+                    <th>读者</th>
+                    <th>借阅次数</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of userRankList">
+                    <td>{{data.userName}}</td>
+                    <td>{{data.countLentNum}}</td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>

@@ -1,8 +1,15 @@
-<p>查阅日志</p>
-<button nz-button nzType="primary" (click)="showTable('1')">登录日志</button>
-<button nz-button nzType="primary" (click)="showTable('2')">借还日志</button>
-<div class="box-none" [ngClass]="{'box-block': type=='1'}" >
-  <nz-table  [nzData]="loginLog"  >
+<nz-breadcrumb>
+  <nz-breadcrumb-item>
+    <a [routerLink]="['../login']">主页</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>查阅日志 </nz-breadcrumb-item>
+</nz-breadcrumb>
+<nz-row nzType="flex" nzJustify="center" style="margin-bottom:20px;">
+  <button nz-button nzType="primary" (click)="showTable('1')">登录日志</button>
+  <button nz-button nzType="primary" (click)="showTable('2')">借还日志</button>
+</nz-row>
+<div class="box-none" [ngClass]="{'box-block': type=='1'}">
+  <nz-table [nzData]="loginLog">
     <thead>
       <tr>
         <th nzAlign="center">用户ID</th>
@@ -12,16 +19,16 @@
     </thead>
     <tbody>
 
-      <tr *ngFor="let data of loginLog" >
-        <td nzAlign="center" >{{ data.userId }}</td>
-        <td nzAlign="center" >{{ data.userName }}</td>
-        <td nzAlign="center" >{{ data.registerDatetime }}</td>
+      <tr *ngFor="let data of loginLog">
+        <td nzAlign="center">{{ data.userId }}</td>
+        <td nzAlign="center">{{ data.userName }}</td>
+        <td nzAlign="center">{{ data.registerDatetime }}</td>
       </tr>
     </tbody>
   </nz-table>
 </div>
-<div class="box-none" [ngClass]="{'box-block': type=='2'}" >
-  <nz-table  [nzData]="bookLog"  >
+<div class="box-none" [ngClass]="{'box-block': type=='2'}">
+  <nz-table [nzData]="bookLog">
     <thead>
       <tr>
         <th nzAlign="center">用户ID</th>
@@ -32,11 +39,11 @@
     </thead>
     <tbody>
 
-      <tr *ngFor="let data of bookLog " >
-        <td nzAlign="center" >{{ data.userId }}</td>
-        <td nzAlign="center" >{{ data.bookId }}</td>
-        <td nzAlign="center" >{{ data.rentalDatetime }}</td>
-        <td nzAlign="center" >{{ data.returnDatetime }}</td>
+      <tr *ngFor="let data of bookLog ">
+        <td nzAlign="center">{{ data.userId }}</td>
+        <td nzAlign="center">{{ data.bookId }}</td>
+        <td nzAlign="center">{{ data.rentalDatetime }}</td>
+        <td nzAlign="center">{{ data.returnDatetime }}</td>
       </tr>
     </tbody>
   </nz-table>

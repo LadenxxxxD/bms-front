@@ -12,6 +12,7 @@ import { ManageBookComponent } from './library/manage-book/manage-book.component
 import { LoggerComponent } from './library/logger/logger.component';
 import { RankBoardComponent } from './library/rank-board/rank-board.component';
 import { NotFoundComponent } from "./error/404/not-found.component";
+import { AuthGuard } from './login/auth.guard';
 
 
 const routes: Routes = [
@@ -20,14 +21,13 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   {
     path: 'library', component: HeaderComponent,
-    // canActivate: [AuthLoginGuard],
     // 需要在顶部显示导航栏的页面写在children里面
     children: [
-      { path: 'queryAdmin', component: QueryAdminComponent },
+      { path: 'queryAdmin', component: QueryAdminComponent, canActivate: [AuthGuard] },
       { path: 'queryUser', component: QueryUserComponent },
-      { path: 'returnBook', component: ReturnBookComponent },
-      { path: 'manageBook', component: ManageBookComponent },
-      { path: 'logger', component: LoggerComponent },
+      { path: 'returnBook', component: ReturnBookComponent, canActivate: [AuthGuard] },
+      { path: 'manageBook', component: ManageBookComponent, canActivate: [AuthGuard] },
+      { path: 'logger', component: LoggerComponent, canActivate: [AuthGuard] },
       { path: 'rankBoard', component: RankBoardComponent },
     ]
   },

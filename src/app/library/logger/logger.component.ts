@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { LoggerService } from './logger.service';
 
-export interface LoginLog{
+export interface LoginLog {
 
-  userId:string;
-  userName:string;
-  registerDatetime:string;
+  userId: string;
+  userName: string;
+  registerDatetime: string;
 }
-export interface BookLog{
-  userId:string;
-  bookId:string;
-  rentalDatetime:string;
-  returnDatetime:string;
+export interface BookLog {
+  userId: string;
+  bookId: string;
+  rentalDatetime: string;
+  returnDatetime: string;
 }
 @Component({
   selector: 'app-logger',
@@ -25,16 +25,16 @@ export class LoggerComponent implements OnInit {
   loginLog: LoginLog;
   bookLog: BookLog;
   type: string;
-  showTable(type:string){
-    this.type=type;
+  showTable(type: string) {
+    this.type = type;
   }
   ngOnInit(): void {
-    this.loggerService.getLoginLog().subscribe((loginLog: LoginLog)=>{
-
-      this.loginLog=loginLog;
+    this.showTable("1");
+    this.loggerService.getLoginLog().subscribe((loginLog: LoginLog) => {
+      this.loginLog = loginLog;
     });
-    this.loggerService.getBookLog().subscribe((bookLog: BookLog)=>{
-      this.bookLog=bookLog;
+    this.loggerService.getBookLog().subscribe((bookLog: BookLog) => {
+      this.bookLog = bookLog;
     });
   }
 

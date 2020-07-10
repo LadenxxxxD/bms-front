@@ -28,6 +28,9 @@ import { BookService } from './library/query-book/query-admin/query-book.service
 import { UserBookService } from './library/query-book/query-user/query-book.service';
 import { ManageBookService } from './library/manage-book/manage-book.service';
 import { LoggerService } from './library/logger/logger.service';
+import { RankService } from './library/rank-board/rank-board.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AddHeaderInterceptor } from './login/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,12 @@ import { LoggerService } from './library/logger/logger.service';
     BrowserAnimationsModule,
     ReactiveFormsModule
   ],
-  providers: [BookService, LoginService, FormBuilder, ManageBookService, UserBookService, LoggerService],
+  providers: [BookService, LoginService, FormBuilder, ManageBookService, UserBookService, LoggerService, RankService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AddHeaderInterceptor,
+      multi: true,
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
