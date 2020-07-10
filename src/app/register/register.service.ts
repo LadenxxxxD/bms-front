@@ -19,19 +19,43 @@ export class RegisterService {
     console.log(newUser)
 
     //下面这个没反应
+    // const httpparams = new HttpParams(
+    //   {
+    //     fromString:'username=' + newUser.username + '&password=' + newUser.password
+    // });
+    // const addhttpOptions = {
+    //   headers: new HttpHeaders({'content-Type': 'application/json'}),
+    //   params: httpparams
+    // };
+     return this.httpClient.post<boolean>('http://localhost:8080/register',newUser);
+    //  --------------------------------------------------------------------------------------
+    // return this.httpClient.post<boolean>('http://localhost:8080/register', newUser);
+  }
+
+
+checkUserThere(userName): Observable<any> {
+
+    // console.log(userName)
+    let body = {
+      userName: userName
+    }
+    console.log(body)
+
+    //下面这个没反应
     const httpparams = new HttpParams(
       {
-        fromString:'username=' + newUser.username + '&password=' + newUser.password
+        fromString:'userName=' + userName 
     });
-    const addhttpOptions = {
+    const checkhttpOptions = {
       headers: new HttpHeaders({'content-Type': 'application/json'}),
       params: httpparams
     };
-     return this.httpClient.post<boolean>('http://localhost:8080/register',newUser);
+     return this.httpClient.post<boolean>('http://localhost:8080/checkUserThere',body);
     //  --------------------------------------------------------------------------------------
     // return this.httpClient.post<boolean>('http://localhost:8080/register', newUser);
 
   }
+
 
 
   private handleError<T>(operation = 'operation', result?: T) {

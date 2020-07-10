@@ -20,7 +20,9 @@
               </span>
             </nz-form-label>
             <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your nickname!">
-              <input nz-input id="nickname" formControlName="nickname" />
+              <input nz-input id="nickname" formControlName="nickname"  (blur)="nickNameChanges($event)"/>
+              <h4 *ngIf="errorUserName" style="color: brown;"> 用户名被抢了 换一个吧 </h4>
+
             </nz-form-control>
           </nz-form-item>
 
@@ -31,6 +33,7 @@
                 (ngModelChange)="updateConfirmValidator()" />
             </nz-form-control>
           </nz-form-item>
+
           <nz-form-item>
             <nz-form-label [nzSm]="7" [nzXs]="24" nzFor="checkPassword" nzRequired>确认密码</nz-form-label>
             <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">

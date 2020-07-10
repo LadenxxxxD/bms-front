@@ -78,6 +78,7 @@ export class RegisterComponent implements OnInit {
 
   validateForm!: FormGroup;
   registerFlg: boolean //注册成败标志
+  errorUserName:boolean //用户名查重
 
 
   // 年级组件部分--------------------------
@@ -198,12 +199,14 @@ export class RegisterComponent implements OnInit {
     // console.log(formError)
     // console.log(grade)
 
+
+
     //符合所有条件 user_name && password && description && authority && email && birthday && sex && grade &&!formError 
-    if (user_name && password && description && authority && email && birthday && sex && grade && !formError) {
+    if (user_name && password && description && authority && email && birthday && sex && grade && !formError&& !this.errorUserName) {
       this.Needgrade = false
       let newUser = {
         // user_id = this.validateForm.controls.
-        user_name: this.validateForm.controls.nickname.value,
+        user_name: this.validateForm.controls.nickname.value,   
         password: this.validateForm.controls.password.value,
         description: this.validateForm.controls.userType.value,
         authority: this.validateForm.controls.userType.value,
@@ -289,5 +292,25 @@ export class RegisterComponent implements OnInit {
   register() {
     // alert(this.fb.group);
     console.log("this.fb.group");
+  }
+
+  nickNameChanges($event) {
+    // console.log($event.target.value)
+    let timeout = setTimeout(() => {
+        console.log($event.target.value)
+      this.registerService.checkUserThere($event.target.value).subscribe(
+        data => {
+          console.log(data);
+          let userThere = data;
+          if (userThere) {
+            this.errorUserName = true;
+            // alert('用户名已被使用~')
+          } else {
+            // alert('用户名可用')
+            this.errorUserName = false;
+          }
+        });
+    }, 500);
+      
   }
 }
