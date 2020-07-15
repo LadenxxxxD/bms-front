@@ -1,3 +1,24 @@
-.breadcrumb-container{
+.breadcrumb-container {
     margin-bottom: 30px;
+}
+
+.G2plotBox {
+    display   : flex;
+    margin-top: 50px;
+}
+
+#bookRankList {
+    flex: 1;
+    width: 300px;
+    height: 300px;
+    padding: 10px;
+    margin: 10px;
+}
+
+#userRankList {
+    flex: 1;
+    width: 300px;
+    height: 300px;
+    padding: 10px;
+    margin: 10px;
 }

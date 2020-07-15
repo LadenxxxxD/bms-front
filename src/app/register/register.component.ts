@@ -269,6 +269,8 @@ export class RegisterComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    //表单各控件验证管理  
     this.validateForm = this.fb.group({
       email: [null, [Validators.email, Validators.required]],
       password: [null, [Validators.required]],
@@ -277,8 +279,7 @@ export class RegisterComponent implements OnInit {
       birthday: [null, [Validators.required]],//生日
       sexValue: [null, [Validators.required]],
       userType: [null, [Validators.required]],
-
-      comment: ['',]
+      comment: ['',]//需求里没有任何要求
     });
   }
 
@@ -289,6 +290,16 @@ export class RegisterComponent implements OnInit {
 
   }
 
+//   adminPassword()
+// {
+// var password=prompt("请输入管理员密码")
+// if (password!=null && password!="")
+// {
+// document.write("管理员密码： " + password )
+// }
+
+// }
+
   register() {
     // alert(this.fb.group);
     console.log("this.fb.group");
@@ -298,6 +309,7 @@ export class RegisterComponent implements OnInit {
     // console.log($event.target.value)
     let timeout = setTimeout(() => {
         console.log($event.target.value)
+        //router管理了可观察的对象 当组件销毁时 会消除订阅防止内存泄露
       this.registerService.checkUserThere($event.target.value).subscribe(
         data => {
           console.log(data);

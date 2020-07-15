@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "angulaer-app"
+  "defaultProject": "angulaer-app",
+  "cli": {
+    "analytics": "b01db6e2-61ed-4030-a4a9-239bfcf1707f"
+  }
 }
