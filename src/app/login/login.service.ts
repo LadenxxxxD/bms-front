@@ -23,15 +23,14 @@ export class LoginService {
       this.authority = identity.authority;
     });
     return obs;
-
   }
 
   test(token: string): Observable<any> {
-    const header = new HttpHeaders().set("Content-Type", "application/json").set("a", token);
+    const header = new HttpHeaders().set("a", "token");
     const body = {
       token: token
     }
-    return this.httpClient.post('http://localhost:8080/test', body, { headers: header, params: body });
+    return this.httpClient.post('http://localhost:8080/test', body, { headers: header , params: body});
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

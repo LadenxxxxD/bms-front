@@ -42,14 +42,14 @@ checkUserThere(userName): Observable<any> {
     console.log(body)
 
     //下面这个没反应
-    const httpparams = new HttpParams(
-      {
-        fromString:'userName=' + userName 
-    });
-    const checkhttpOptions = {
-      headers: new HttpHeaders({'content-Type': 'application/json'}),
-      params: httpparams
-    };
+    // const httpparams = new HttpParams(
+    //   {
+    //     fromString:'userName=' + userName 
+    // });
+    // const checkhttpOptions = {
+    //   headers: new HttpHeaders({'content-Type': 'application/json'}),
+    //   params: httpparams
+    // };
      return this.httpClient.post<boolean>('http://localhost:8080/checkUserThere',body);
     //  --------------------------------------------------------------------------------------
     // return this.httpClient.post<boolean>('http://localhost:8080/register', newUser);

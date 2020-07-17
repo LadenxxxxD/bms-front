@@ -13,6 +13,7 @@ import { LoggerComponent } from './library/logger/logger.component';
 import { RankBoardComponent } from './library/rank-board/rank-board.component';
 import { NotFoundComponent } from "./error/404/not-found.component";
 import { AuthGuard } from './login/auth.guard';
+import { RouterGuard } from './login/router.guard';
 
 
 const routes: Routes = [
@@ -21,13 +22,14 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   {
     path: 'library', component: HeaderComponent,
+    
     // 需要在顶部显示导航栏的页面写在children里面
     children: [
-      { path: 'queryAdmin', component: QueryAdminComponent, canActivate: [AuthGuard] },
-      { path: 'queryUser', component: QueryUserComponent },
-      { path: 'returnBook', component: ReturnBookComponent, canActivate: [AuthGuard] },
-      { path: 'manageBook', component: ManageBookComponent, canActivate: [AuthGuard] },
-      { path: 'logger', component: LoggerComponent, canActivate: [AuthGuard] },
+      { path: 'queryAdmin', component: QueryAdminComponent, canActivate: [AuthGuard, RouterGuard] },
+      { path: 'queryUser', component: QueryUserComponent, canActivate: [RouterGuard]},
+      { path: 'returnBook', component: ReturnBookComponent, canActivate: [AuthGuard, RouterGuard] },
+      { path: 'manageBook', component: ManageBookComponent, canActivate: [AuthGuard, RouterGuard] },
+      { path: 'logger', component: LoggerComponent, canActivate: [AuthGuard, RouterGuard] },
       { path: 'rankBoard', component: RankBoardComponent },
     ]
   },
@@ -39,6 +41,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [RouterGuard]
 })
 export class AppRoutingModule { }

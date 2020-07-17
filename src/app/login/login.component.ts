@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { LoginService } from './login.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { CookieService } from "ngx-cookie-service";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  time: number = 2*60*60*1000;// cookie过期时间两个小时 2*60*60*1000
   validateForm!: FormGroup;
 
   submitForm(): void {
@@ -16,7 +19,7 @@ export class LoginComponent implements OnInit {
       this.validateForm.controls[i].updateValueAndValidity();
     }
   }
-  constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router) { }
+  constructor(private cookies: CookieService, private fb: FormBuilder, private loginService: LoginService, private router: Router, private message: NzMessageService) { }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
@@ -33,38 +36,38 @@ export class LoginComponent implements OnInit {
       console.log('用户名密码空，不向后端发送请求');
       return;
     }
-    this.loginService.login(this.validateForm.value.userName, this.validateForm.value.password).subscribe((identity: any) => {
+    this.loginService.login(this.validateForm.value.userName, this.validateForm.value.password).subscribe((obs: any) => {
 
       //如果密码正确identity为true进入下一个页面
-      localStorage.setItem("token", identity.token);
-      // console.log(window.localStorage);
+      this.cookies.set("token", obs.token,new Date(new Date().getTime() + this.time));
+      // localStorage.setItem("token", obs.token);
       //后端返回的null类型被转为字符串
-      if (identity.authority !== "null") {
-        if (identity.authority == "admin") {
+      if (obs.authority !== "null") {
+        if (obs.authority == "admin") {
           localStorage.setItem("identity", "admin");
           that.router.navigate(['/library/queryAdmin']);
         }
-        else if (identity.authority == "user") {
+        else if (obs.authority == "user") {
           localStorage.setItem("identity", "user");
           that.router.navigate(['/library/queryUser']);
         }
       }
       else {
-        alert('用户名或密码错误！');
+        this.message.create("error",'用户名或密码错误！');
       }
     });
 
   }
 
-  testToken(): void {
-    if (localStorage.getItem("token") != null) {
-      this.loginService.test(localStorage.getItem("token")).subscribe((res: any) => {
-      });
-    }
-    else {
-      console.log("localStorage里的token为空");
-    }
-  }
+  // testToken(): void {
+  //   if (localStorage.getItem("token") != null) {
+  //     this.loginService.test(localStorage.getItem("token")).subscribe((res: any) => {
+  //     });
+  //   }
+  //   else {
+  //     console.log("localStorage里的token为空");
+  //   }
+  // }
 
 
 }

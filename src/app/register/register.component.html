@@ -93,7 +93,7 @@
           Please confirm your identity!">
               <nz-radio-group formControlName="userType" nzButtonStyle="solid" class="sexBox">
                 <label nz-radio-button nzValue="user">👱‍♂️用户</label>
-                <label nz-radio-button nzValue="admin" >👩‍💻管理员</label>
+                <label nz-radio-button nzValue="admin" (click)="showModal()">👩‍💻管理员</label>
               </nz-radio-group>
 
             </nz-form-control>
@@ -140,6 +140,26 @@
 
   <nz-footer> Design ©2020 Implement By casually8Team</nz-footer>
 </nz-layout>
+
+
+
+<!-- 弹出模态框 -->
+<nz-modal [(nzVisible)]="isVisible" nzTitle="管理员认证" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"
+  [nzOkLoading]="isOkLoading">
+  <div nz-row class="row-gutter">
+    <div nz-col nzSpan="4" nzOffset="3">管理员密码：</div>
+    <div nz-col nzSpan="10">
+      <nz-input-group [nzSuffix]="inputClearTplModalUserId">
+        <input type="text" nz-input [(ngModel)]="modaladminPassword" placeholder="请输入管理员密码" />
+      </nz-input-group>
+      <ng-template #inputClearTplModalUserId>
+        <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="modalUserId"
+          (click)="modalUserId = ''">
+        </i>
+      </ng-template>
+    </div>
+  </div>
+</nz-modal>
 
 
 

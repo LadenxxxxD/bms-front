@@ -7,6 +7,7 @@ import { Subscription, of } from 'rxjs';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { NzCascaderOption } from 'ng-zorro-antd/cascader';
 import { RegisterService } from './register.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 const options = [
   {
@@ -74,12 +75,15 @@ const options = [
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private router: Router, private registerService: RegisterService) { }
+  constructor(private fb: FormBuilder, private router: Router, private registerService: RegisterService,private message: NzMessageService) { }
 
   validateForm!: FormGroup;
   registerFlg: boolean //注册成败标志
   errorUserName:boolean //用户名查重
-
+  isVisible = false;
+  isOkLoading = false;
+  adminPassword = 'admin';
+  modaladminPassword = '';//用户输入的管理员密码
 
   // 年级组件部分--------------------------
 
@@ -225,8 +229,14 @@ export class RegisterComponent implements OnInit {
           if (!this.registerFlg) {
             alert('注册失败，请检查网络是否在开小车~')
           } else {
-            alert('注册成功')
-            // this.router.navigate(['/details'], { queryParams: { user : userId }});
+            this.createMessage('success',  '注册成功~ 3秒后自动跳转登陆页面');
+
+            this.isOkLoading = true;
+            setTimeout(() => {
+              this.isVisible = false;
+              this.isOkLoading = false;
+              this.router.navigate(['/login'])
+            }, 3000);
           }
         });
 
@@ -239,11 +249,6 @@ export class RegisterComponent implements OnInit {
       this.Needgrade = true
       alert('请检查注册信息~')
     }
-
-
-
-
-
   }
 
 
@@ -305,6 +310,40 @@ export class RegisterComponent implements OnInit {
     console.log("this.fb.group");
   }
 
+   // 全局提示
+   createMessage(type: string, str: string): void {
+    this.message.create(type, str);
+  }
+
+  // 点击管理员触发模态框
+  showModal(data: any): void {
+    this.isVisible = true;
+  }
+
+   // 点击模态框确定
+   handleOk(): void {
+    if (this.modaladminPassword != this.adminPassword) {
+      this.createMessage('error', '密码错误！');
+      // this.validateForm.controls.userType.setValue('user');
+      return;
+    }
+    else
+    {
+      this.createMessage('success',  '管理员密码正确~');
+    }
+    this.isOkLoading = true;
+    setTimeout(() => {
+      this.isVisible = false;
+      this.isOkLoading = false;
+    }, 500);
+  }
+  // 点击模态框取消
+  handleCancel(): void {
+    this.isVisible = false;
+    this.validateForm.controls.userType.setValue('user');
+  }
+  
+
   nickNameChanges($event) {
     // console.log($event.target.value)
     let timeout = setTimeout(() => {
@@ -325,4 +364,7 @@ export class RegisterComponent implements OnInit {
     }, 500);
       
   }
+
+
+  
 }
