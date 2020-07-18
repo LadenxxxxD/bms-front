@@ -15,17 +15,16 @@ export class RouterGuard implements CanActivate {
     canActivate(): Promise<boolean> {
         return this.guardService.checkToken().toPromise().then(res => {
             if (res === true) {
-                console.log("后端解析token返回res且值为res："+res);
+                // console.log("后端解析token返回res且值为res："+res);
                 return true;
             }else {
-                console.log("token有效返回为res有值，token已过期无效res为null且跳转到登录页面"+res);
+                // console.log("token有效返回为res有值，token已过期无效res为null且跳转到登录页面"+res);
                 this.router.navigate(['/login']);
                 this.message.create("error",'您的身份已过期请重新登录！');
                 return false;
             }
         }
     );
-    
 }
 
   

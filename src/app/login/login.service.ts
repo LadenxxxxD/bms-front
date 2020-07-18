@@ -18,20 +18,16 @@ export class LoginService {
       userName: userName,
       password: password
     }
-    const obs = this.httpClient.post('http://localhost:8080/login', body);
-    obs.subscribe((identity: any) => {
-      this.authority = identity.authority;
-    });
-    return obs;
+    return this.httpClient.post('http://localhost:8080/login', body);
   }
 
-  test(token: string): Observable<any> {
-    const header = new HttpHeaders().set("a", "token");
-    const body = {
-      token: token
-    }
-    return this.httpClient.post('http://localhost:8080/test', body, { headers: header , params: body});
-  }
+  // test(token: string): Observable<any> {
+  //   const header = new HttpHeaders().set("a", "token");
+  //   const body = {
+  //     token: token
+  //   }
+  //   return this.httpClient.post('http://localhost:8080/test', body, { headers: header , params: body});
+  // }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -42,6 +38,10 @@ export class LoginService {
 
   public getAuthority() {
     return this.authority;
+  }
+
+  public setAuthority(authority: string) {
+     this.authority = authority;
   }
 
 }

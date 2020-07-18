@@ -26,18 +26,19 @@ export class AddHeaderInterceptor implements HttpInterceptor {
     return next.handle(clonedRequest);
   }
 
-  private handleData(
-    event: HttpResponse<any> | HttpErrorResponse,
-  ): Observable<any> {
-    // 拦截response状态码322（token失效）并跳转login页面
-    switch (event.status) {
-      case 322:
-        console.log('not login') ;
-        this.router.navigate(['/login']);
-        return of(event) ;
-        break ;
-      default:
-    }
-    return throwError(event) ;
-  }
+  // private handleData(
+  //   event: HttpResponse<any> | HttpErrorResponse,
+  // ): Observable<any> {
+  //   // 拦截response状态码322（token失效）并跳转login页面
+  //   switch (event.status) {
+  //     case 322:
+  //       // console.log('not login') ;
+  //       this.router.navigate(['/login']);
+  //       this.message.create("error",'您的身份已过期请重新登录！');
+  //       return of(event) ;
+  //       break ;
+  //     default:
+  //   }
+  //   return throwError(event) ;
+  // }
 }

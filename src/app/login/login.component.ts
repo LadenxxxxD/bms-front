@@ -33,22 +33,20 @@ export class LoginComponent implements OnInit {
   login(): void {
     const that = this;
     if (this.validateForm.value.userName == null || this.validateForm.value.userName == '' || this.validateForm.value.password == null || this.validateForm.value.password == '') {
-      console.log('用户名密码空，不向后端发送请求');
+      // console.log('用户名密码空，不向后端发送请求');
       return;
     }
     this.loginService.login(this.validateForm.value.userName, this.validateForm.value.password).subscribe((obs: any) => {
-
+      this.loginService.setAuthority(obs.authority);
       //如果密码正确identity为true进入下一个页面
       this.cookies.set("token", obs.token,new Date(new Date().getTime() + this.time));
       // localStorage.setItem("token", obs.token);
       //后端返回的null类型被转为字符串
       if (obs.authority !== "null") {
         if (obs.authority == "admin") {
-          localStorage.setItem("identity", "admin");
           that.router.navigate(['/library/queryAdmin']);
         }
         else if (obs.authority == "user") {
-          localStorage.setItem("identity", "user");
           that.router.navigate(['/library/queryUser']);
         }
       }
