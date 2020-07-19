@@ -31,7 +31,7 @@ import { LoggerService } from './library/logger/logger.service';
 import { RankService } from './library/rank-board/rank-board.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddHeaderInterceptor } from './login/auth.interceptor';
-
+import { ResponseInterceptor } from './login/response.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +61,15 @@ import { AddHeaderInterceptor } from './login/auth.interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: AddHeaderInterceptor,
       multi: true,
-    }],
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ResponseInterceptor,
+      multi: true,
+    }
+  
+  ],
+    
   bootstrap: [AppComponent]
 })
 export class AppModule { }

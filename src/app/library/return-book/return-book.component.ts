@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ReturnBookService } from './return-book.service';
-
+import { NzMessageService } from 'ng-zorro-antd/message';
 @Component({
   selector: 'app-return-book',
   templateUrl: './return-book.component.html',
@@ -21,7 +21,7 @@ export class ReturnBookComponent implements OnInit {
     }
   }
 
-  constructor(private fb: FormBuilder,private rbService:ReturnBookService) {}
+  constructor(private fb: FormBuilder,private rbService:ReturnBookService,private message: NzMessageService) {}
 
   confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
@@ -37,9 +37,10 @@ export class ReturnBookComponent implements OnInit {
     this.rbService.returnBook(this.userId,this.bookId).subscribe((data: boolean) => {
       this.returnBookflg=data
       if(!this.returnBookflg){
-        alert('用户ID或图书ID错误');
+        this.message.create('error', `用户ID或图书ID错误`);
       }else{
-        alert('归还成功');
+        this.message.create('success', `归还成功`);
+
       }
 
     });

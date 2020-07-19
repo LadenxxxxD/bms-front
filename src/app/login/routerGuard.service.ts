@@ -15,7 +15,7 @@ export class GuardService {
     const body = {
       token: token
     }
-    console.log("检查token："+token+"是否失效。");
+    // console.log("检查token："+token+"是否失效。");
     if(token) {
       return this.httpClient.post<boolean>('http://localhost:8080/checkToken',{},{params:body});
     }
