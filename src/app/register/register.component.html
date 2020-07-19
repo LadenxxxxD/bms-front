@@ -15,7 +15,7 @@
             <nz-form-label [nzSm]="7" [nzXs]="24" nzFor="nickname" nzRequired>
               <span>
                 用户名
-                <i nz-icon nz-tooltip nzTooltipTitle="What do you want other to call you" nzType="question-circle"
+                <i nz-icon nz-tooltip nzTooltipTitle="" nzType="question-circle"
                   nzTheme="outline"></i>
               </span>
             </nz-form-label>
@@ -30,7 +30,7 @@
             <nz-form-label [nzSm]="7" [nzXs]="24" nzFor="password" nzRequired>密码</nz-form-label>
             <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your password!">
               <input nz-input type="password" id="password" formControlName="password"
-                (ngModelChange)="updateConfirmValidator()" />
+                (ngModelChange)="updateConfirmValidator()"/>
             </nz-form-control>
           </nz-form-item>
 
@@ -140,7 +140,6 @@
 
   <nz-footer> Design ©2020 Implement By casually8Team</nz-footer>
 </nz-layout>
-
 
 
 <!-- 弹出模态框 -->
