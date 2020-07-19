@@ -20,6 +20,7 @@ import { ReturnBookComponent } from './library/return-book/return-book.component
 import { ManageBookComponent } from './library/manage-book/manage-book.component';
 import { LoggerComponent } from './library/logger/logger.component';
 import { RankBoardComponent } from './library/rank-board/rank-board.component';
+import { UserinfoComponent } from './library/userinfo/userinfo.component'
 import { NotFoundComponent } from './error/404/not-found.component';
 
 // services
@@ -32,6 +33,8 @@ import { RankService } from './library/rank-board/rank-board.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddHeaderInterceptor } from './login/auth.interceptor';
 import { ResponseInterceptor } from './login/response.interceptor';
+import { UserinfoService } from './library/userinfo/userinfo.service'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +48,7 @@ import { ResponseInterceptor } from './login/response.interceptor';
     ReturnBookComponent,
     LoggerComponent,
     RankBoardComponent,
+    UserinfoComponent,
     NotFoundComponent
   ],
   imports: [
@@ -56,7 +60,7 @@ import { ResponseInterceptor } from './login/response.interceptor';
     BrowserAnimationsModule,
     ReactiveFormsModule
   ],
-  providers: [BookService, LoginService, FormBuilder, ManageBookService, UserBookService, LoggerService, RankService,
+  providers: [BookService, LoginService, FormBuilder, ManageBookService, UserBookService, LoggerService, RankService, UserinfoService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AddHeaderInterceptor,
@@ -67,9 +71,9 @@ import { ResponseInterceptor } from './login/response.interceptor';
       useClass: ResponseInterceptor,
       multi: true,
     }
-  
+
   ],
-    
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

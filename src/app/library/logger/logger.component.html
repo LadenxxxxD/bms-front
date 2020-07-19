@@ -7,14 +7,13 @@
 <nz-row nzType="flex" nzJustify="center" style="margin-bottom:20px;">
   <button nz-button nzType="primary" (click)="showTable('1')">登录日志</button>
   <button nz-button nzType="primary" (click)="showTable('2')">借还日志</button>
+  <a nz-button nzType="default" download="借还日志.csv" (click)="exportCSV()">导出CSV</a>
 </nz-row>
 <div class="box-none" [ngClass]="{'box-block': type=='1'}">
   <nz-table [nzData]="loginLog">
     <thead>
       <tr>
-        <th nzAlign="center">用户ID</th>
-        <th nzAlign="center">姓名</th>
-        <th nzAlign="center">登录时间</th>
+        <th nzAlign="center" *ngFor="let item of loginColumns">{{item}}</th>
       </tr>
     </thead>
     <tbody>
@@ -31,10 +30,8 @@
   <nz-table [nzData]="bookLog">
     <thead>
       <tr>
-        <th nzAlign="center">用户ID</th>
-        <th nzAlign="center">图书ID</th>
-        <th nzAlign="center">借阅时间</th>
-        <th nzAlign="center">归还时间</th>
+        <th nzAlign="center" *ngFor="let item of bookColumns">{{item}}</th>
+
       </tr>
     </thead>
     <tbody>

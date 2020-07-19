@@ -9,6 +9,7 @@ import { log } from 'util';
   providedIn: 'root'
 })
 export class LoginService {
+  currentUser: string = null;
   authority: string = null;
 
   constructor(private httpClient: HttpClient) { }
@@ -41,7 +42,15 @@ export class LoginService {
   }
 
   public setAuthority(authority: string) {
-     this.authority = authority;
+    this.authority = authority;
+  }
+
+  public getCurrentUser() {
+    return this.currentUser;
+  }
+
+  public setCurrentUser(username: string) {
+    this.currentUser = username;
   }
 
 }

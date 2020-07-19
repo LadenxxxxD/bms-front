@@ -32,7 +32,7 @@ const userMap = [
   },
   {
     title: '个人信息',
-    url: '/library/information',
+    url: '/library/userInfo',
   },
   {
     title: '排行榜',

@@ -1,0 +1,132 @@
+<section class="breadcrumb-container">
+    <nz-breadcrumb>
+        <nz-breadcrumb-item>
+            <a [routerLink]="['../login']">主页</a>
+        </nz-breadcrumb-item>
+        <nz-breadcrumb-item>用户信息</nz-breadcrumb-item>
+    </nz-breadcrumb>
+</section>
+<div class="edit-btn">
+    <button nz-button nzType="primary" (click)="edit()">编辑</button>
+</div>
+<nz-descriptions nzBordered>
+    <nz-descriptions-item nzTitle="用户ID">{{user.userid}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="用户名">{{user.username}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="身份">{{user.authority==='admin'?'管理员':'普通用户'}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="性别">{{user.sex==='man'?'男':'女'}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="生日">{{user.birthday}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="E-Mail">{{user.email}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="年级" [nzSpan]="3">
+        {{user.grade}}
+    </nz-descriptions-item>
+    <nz-descriptions-item nzTitle="爱好" [nzSpan]="3">
+        {{user.interest}}
+    </nz-descriptions-item>
+    <nz-descriptions-item nzTitle="描述">
+        {{user.description}}
+    </nz-descriptions-item>
+</nz-descriptions>
+
+<!-- 弹出模态框 -->
+<nz-modal [(nzVisible)]="isVisible" nzTitle="编辑" (nzOnCancel)="handleCancel()" (nzOnOk)="update()"
+    [nzOkLoading]="isOkLoading">
+    <div class="modal-content">
+        <div nz-row class="row-gutter">
+            <div nz-col nzSpan="4" nzOffset="3">用户Id</div>
+            <div nz-col nzSpan="12">
+                <nz-input-group [nzSuffix]="userid">
+                    <input type="text" nz-input [(ngModel)]="userModal.userid" placeholder="图书ID">
+                </nz-input-group>
+                <ng-template #userid>
+                    <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle"
+                        *ngIf="userModal.userid" (click)="userModal.userid = ''"></i>
+                </ng-template>
+            </div>
+        </div>
+        <div nz-row class="row-gutter">
+            <div nz-col nzSpan="4" nzOffset="3">用户名</div>
+            <div nz-col nzSpan="12">
+                <nz-input-group [nzSuffix]="authority">
+                    <input type="text" nz-input [(ngModel)]="userModal.username" placeholder="书名" />
+                </nz-input-group>
+                <ng-template #authority>
+                    <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle"
+                        *ngIf="userModal.username" (click)="userModal.username = ''"></i>
+                </ng-template>
+            </div>
+        </div>
+        <div nz-row class="row-gutter">
+            <div nz-col nzSpan="4" nzOffset="3">性别</div>
+            <div nz-col nzSpan="12">
+                <nz-input-group [nzSuffix]="sex">
+                    <input type="text" nz-input [(ngModel)]="userModal.sex" placeholder="出版社" />
+                </nz-input-group>
+                <ng-template #sex>
+                    <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="userModal.sex"
+                        (click)="userModal.sex = ''"></i>
+                </ng-template>
+            </div>
+        </div>
+        <div nz-row class="row-gutter">
+            <div nz-col nzSpan="4" nzOffset="3">生日</div>
+            <div nz-col nzSpan="12">
+                <nz-input-group [nzSuffix]="birthday">
+                    <input type="text" nz-input [(ngModel)]="userModal.birthday" placeholder="剩余数量" />
+                </nz-input-group>
+                <ng-template #birthday>
+                    <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle"
+                        *ngIf="userModal.birthday" (click)="userModal.birthday = ''"></i>
+                </ng-template>
+            </div>
+        </div>
+        <div nz-row class="row-gutter">
+            <div nz-col nzSpan="4" nzOffset="3">E-Mail</div>
+            <div nz-col nzSpan="12">
+                <nz-input-group [nzSuffix]="email">
+                    <input type="text" nz-input [(ngModel)]="userModal.email" placeholder="图书详情" />
+                </nz-input-group>
+                <ng-template #email>
+                    <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="userModal.email"
+                        (click)="userModal.email = ''"></i>
+                </ng-template>
+            </div>
+        </div>
+        <div nz-row class="row-gutter">
+            <div nz-col nzSpan="4" nzOffset="3">年级</div>
+            <div nz-col nzSpan="12">
+                <nz-input-group [nzSuffix]="grade">
+                    <input type="text" nz-input [(ngModel)]="userModal.grade" placeholder="图书详情" />
+                </nz-input-group>
+                <ng-template #grade>
+                    <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="userModal.grade"
+                        (click)="userModal.grade = ''"></i>
+                </ng-template>
+            </div>
+        </div>
+        <div nz-row class="row-gutter">
+            <div nz-col nzSpan="4" nzOffset="3">爱好</div>
+            <div nz-col nzSpan="12">
+                <nz-input-group [nzSuffix]="interest">
+                    <input type="text" nz-input [(ngModel)]="userModal.interest" placeholder="图书详情" />
+                </nz-input-group>
+                <ng-template #interest>
+                    <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle"
+                        *ngIf="userModal.interest" (click)="userModal.interest = ''"></i>
+                </ng-template>
+            </div>
+        </div>
+        <div nz-row class="row-gutter">
+            <div nz-col nzSpan="4" nzOffset="3">描述</div>
+            <div nz-col nzSpan="12">
+                <nz-input-group [nzSuffix]="description">
+                    <input type="text" nz-input [(ngModel)]="userModal.description" placeholder="图书详情" />
+                </nz-input-group>
+                <ng-template #description>
+                    <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle"
+                        *ngIf="userModal.description" (click)="userModal.description = ''"></i>
+                </ng-template>
+            </div>
+        </div>
+
+    </div>
+</nz-modal>

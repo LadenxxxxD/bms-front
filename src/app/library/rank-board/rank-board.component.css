@@ -3,10 +3,17 @@
 }
 
 .G2plotBox {
-    display   : flex;
+    /* display   : flex;
+    margin-top: 50px; */
     margin-top: 50px;
+    max-height: 500px;
+    flex-flow: row nowrap;
 }
-
+.g2-chart{
+    max-width: 500px;
+    display: inline-block;
+}
+/* 
 #bookRankList {
     flex: 1;
     width: 300px;
@@ -21,4 +28,4 @@
     height: 300px;
     padding: 10px;
     margin: 10px;
-}
+} */
