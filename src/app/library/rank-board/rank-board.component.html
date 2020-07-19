@@ -6,6 +6,14 @@
         <nz-breadcrumb-item>排行榜</nz-breadcrumb-item>
     </nz-breadcrumb>
 </section>
+
+<div class="G2plotBox">
+
+    <div id="bookRankList"></div>
+
+    <div id="userRankList"></div>
+
+</div>
 <div nz-row>
     <div nz-col nzSpan="11" nzOffset="1">
         <nz-table #basicTable [nzData]="bookRankList" [nzShowPagination]="false">
@@ -43,10 +51,4 @@
     </div>
 </div>
 
-<div class="G2plotBox">
 
-    <div id="bookRankList"></div>
-
-    <div id="userRankList"></div>
-
-</div>

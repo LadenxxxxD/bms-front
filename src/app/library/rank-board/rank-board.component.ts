@@ -61,6 +61,7 @@ export class RankBoardComponent implements OnInit {
         data,
         xField: '书名',
         yField: '借阅次数',
+        dynamicHeight: true,
         percentage:{
           visible:false
         }
@@ -90,8 +91,8 @@ export class RankBoardComponent implements OnInit {
       // Step 1: 创建 Chart 对象
       const chart = new G2.Chart({
         container: 'userRankList', // 指定图表容器 ID
-        width: 600, // 指定图表宽度
-        height: 300, // 指定图表高度
+        width: 500, // 指定图表宽度
+        height: 500, // 指定图表高度
       });
 
       // Step 2: 载入数据源

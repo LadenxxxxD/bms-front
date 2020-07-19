@@ -5,6 +5,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 
 import { Subscription, of } from 'rxjs';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+         //表单验证类//表单生成工具类
 import { NzCascaderOption } from 'ng-zorro-antd/cascader';
 import { RegisterService } from './register.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -77,7 +78,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private router: Router, private registerService: RegisterService,private message: NzMessageService) { }
 
-  validateForm!: FormGroup;
+  validateForm!: FormGroup;//表单对象类
   registerFlg: boolean //注册成败标志
   errorUserName:boolean //用户名查重
   isVisible = false;

@@ -10,15 +10,17 @@
 #bookRankList {
     flex: 1;
     width: 300px;
-    height: 300px;
+    height: 500px;
     padding: 10px;
     margin: 10px;
 }
 
 #userRankList {
-    flex: 1;
+    flex: 0.8;
+    margin-top: 200px;
+    margin-left: 100px;
     width: 300px;
-    height: 300px;
+    height: 500px;
     padding: 10px;
     margin: 10px;
 }
